@@ -1,0 +1,33 @@
+#title{
+    text-align: center;
+    font-family: arial, sans-serif;
+}
+
+#tblkv1{
+    text-align: center;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    width: 100%;
+}
+
+#tblkv1 td, #tblkv1 th{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#tblkv1 tr:nth-child(even){background-color: #f2f2f2;}
+#tblkv1 tr:hover {background-color: #ddd;}
+
+#tblkv1 th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+marquee{
+    height: 2em;
+    background-color: black;
+}
