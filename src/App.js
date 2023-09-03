@@ -13,6 +13,8 @@ import FamilyMembers from './components/FamilyMembers/FamilyMembers'
 import HouseHoldThings from './components/HouseHoldThings/HouseHoldThings'
 import Relatives from './components/Relatives/Relatives'
 import Vehicles from './components/Vehicles/Vehicles'
+import AddEditPersonComponent from './components/Persons/AddOrEditPerson';
+import DeletePerson from './components/Persons/DeletePerson';
 
 function App() {
   return (
@@ -26,6 +28,11 @@ function App() {
       <Route path="/familyMembers" element={<FamilyMembers />}/>
       <Route path="/friends" element={<Friends/>}/>
       <Route path="/persons" element={<Persons/>}/>
+      <Route path="/addPerson" element={<AddEditPersonComponent/>}/>
+      <Route path="/updatePerson/:personId" element={<AddEditPersonComponent/>}/>
+
+      <Route path="/deletePerson/:personId" element={<DeletePerson/>}/>
+
       <Route path="/houseHoldThings" element={<HouseHoldThings />}/>
       <Route path="/persons" element={<Persons/>}/>
       <Route path="/relatives" element={<Relatives/>}/>
