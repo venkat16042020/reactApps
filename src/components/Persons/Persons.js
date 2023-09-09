@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import PersonService from '../../services/PersonServices'
+import PersonServices from '../../services/PersonServices'
 import Header from '../Header/Header'
 import '../../css/abc.css'
 
@@ -16,7 +16,7 @@ const PersonsComponent = () => {
   
 useEffect(()=>{
   setCurrentPage(1)
-  PersonService.getAllPersons().then((response)=>{
+  PersonServices.getAllPersons().then((response)=>{
     setPersons(response.data)
   }).catch(error =>{
     console.log(error)
@@ -28,15 +28,24 @@ useEffect(()=>{
       <Header></Header>
       <br></br>
       <h2 className='text-center'>Persons</h2>
-      <Link to = "/persons" className='btn btn-primary mb-2'>Add Person</Link>
+      <Link to = "/addPerson" className='btn btn-primary mb-2'>Add Person</Link>
       <table id ='tblkv1'>
         <thead>
           <tr>
-            <th>PersonId</th>
-            <th>personFirstName</th>
-            <th>personLastName</th>
-            <th>personMiddleName</th>
-            <th>Actions</th>
+            <th>Person Id</th>
+            <th>person First Name</th>
+            <th>person Middle Name</th>
+            <th>person Last Name</th>
+            <th>dob</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Landmark</th>
+            <th>Street</th>
+            <th>Time Zone</th>
+            <th>Zip Code</th>
+            <th>Action</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -46,10 +55,18 @@ useEffect(()=>{
               <tr key={personMapObj.personId}>
                 <td>{personMapObj.personId}</td>
                 <td>{personMapObj.personFirstName}</td>
-                <td>{personMapObj.personLastName}</td>
                 <td>{personMapObj.personMiddleName}</td>
+                <td>{personMapObj.personLastName}</td>
+                <td>{personMapObj.dob}</td>
+                <td>{personMapObj.country}</td>
+                <td>{personMapObj.state}</td>
+                <td>{personMapObj.city}</td>
+                <td>{personMapObj.landmark}</td>
+                <td>{personMapObj.street}</td>
+                <td>{personMapObj.zipcode}</td>
+                
                 <td>
-                  <Link className='btn btn-outline-primary ms-1' to={`/updatedPerson/${personMapObj.personId}`}>Edit</Link>
+                  <Link className='btn btn-outline-primary ms-1' to={`/updatePerson/${personMapObj.personId}`}>Edit</Link>
                   <Link className='btn btn-outline-primary ms-1' to={`/deletePerson/${personMapObj.personId}`}>Delete</Link>
                 </td>
                 </tr>

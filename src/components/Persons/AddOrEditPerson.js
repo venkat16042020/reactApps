@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import PersonService from '../../services/PersonServices'
+import PersonServices from '../../services/PersonServices'
 import Header from '../Header/Header'
 
-const AddEditPersonComponent = () => {
+const PostPutPersonComponent = () => {
   const [person_id, setPerson_Id] = useState('')
   const [personFirstName, setPersonFirstName] = useState('')
   const [personMiddleName, setPersonMiddleName] = useState('')
   const [personLastName, setPersonLastName] = useState('')
+  const [dob, setdob] = useState('')
+  const [street, setStreet] = useState('')
+  const [landMark, setLandMark] = useState('')
+  const [city, setCity] = useState('')
+  const [state, setState] = useState('')
+  const [country, setCountry] = useState('')
+  const [zipcode, setZipcode] = useState('')
+  const [timezone, setTimezone] = useState('')
+
   const history1 = useNavigate()
   var {personId} = useParams()
-  var person = { personId, personFirstName, personLastName, personMiddleName}
+  var person = { personId, personFirstName, personLastName, personMiddleName, dob, street, landMark, city, state, country, zipcode, timezone}
 
 const addOrEditPerson = (e)=>{
   e.preventDefault()
   if(personId){
     console.log("Editing person...")
+    console.log(personId)
     console.log(person)
-    PersonService.updatePerson(personId, person).th(
+    PersonServices.updatePerson(personId, person).then(
       (response)=>{
         history1('/persons')
       }
@@ -27,9 +37,9 @@ const addOrEditPerson = (e)=>{
     })
   }else{
     personId = person_id
-    person = {personId, personFirstName, personLastName, personMiddleName}
+    person = {personId, personFirstName, personLastName, personMiddleName, dob, street, landMark, city, state, country, zipcode, timezone}
     console.log(person)
-    PersonService.addPerson(person).then(
+    PersonServices.addPerson(person).then(
       (response)=>{
         history1('/persons')
       }
@@ -40,11 +50,20 @@ const addOrEditPerson = (e)=>{
 }
 
 useEffect(()=>{
-  PersonService.getPersonById(personId).then((response)=>{
+  PersonServices.getPersonById(personId).then((response)=>{
     setPerson_Id(response.data.personId)
     setPersonFirstName(response.data.personFirstName)
     setPersonLastName(response.data.personLastName)
     setPersonMiddleName(response.data.personMiddleName)
+    setdob(response.data.dob)
+    setStreet(response.data.street)
+    setLandMark(response.data.landMark)
+    setCity(response.data.city)
+    setState(response.data.state)
+    setCountry(response.data.country)
+    setZipcode(response.data.zipcode)
+    setTimezone(response.data.timezone)
+    
   }).catch(error =>{
     console.log(error)
   })
@@ -68,11 +87,12 @@ const title = () =>{
         <h3 className='text-center'>{title()}</h3>
         <div className='card-body'>
           <form>
+        
             <div class='mb-3 row'>
-              <label class='col-sm-4 col-form-label'>PersonId</label>
-              <div clas='col-sm-8'>
+              <label class='col-sm-4 col-form-label'>Person Id</label>
+              <div class='col-sm-8'>
                 <input type='text' class='form-control'
-                placeholder='Enter person id'
+                placeholder='Enter Person Id'
                 name='personId'
                 value={person_id}
                 onChange={(e)=> setPerson_Id(e.target.value)}>                  
@@ -91,17 +111,6 @@ const title = () =>{
               </div>
             </div>
             <div class='mb-3 row'>
-              <label class='col-sm-4 col-form-label'>Person Last Name</label>
-              <div class='col-sm-8'>
-                <input type='text' class='form-control'
-                placeholder='Enter Person Last Name'
-                name='personLastName'
-                value={personLastName}
-                onChange={(e)=> setPersonLastName(e.target.value)}>                  
-                </input>
-              </div>
-            </div>
-            <div class='mb-3 row'>
               <label class='col-sm-4 col-form-label'>Person Middle Name</label>
               <div class='col-sm-8'>
                 <input type='text' class='form-control'
@@ -109,6 +118,105 @@ const title = () =>{
                 name='personMiddleName'
                 value={personMiddleName}
                 onChange={(e)=> setPersonMiddleName(e.target.value)}>                  
+                </input>
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>Person Last Name</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter Person Last Name'
+                name='personLastName'
+                value={personLastName}
+                onChange={(e)=> setPersonLastName(e.target.value)}>                  
+                </input> 
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>dob</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter dob'
+                name='dob'
+                value={dob}
+                onChange={(e)=> setdob(e.target.value)}>                  
+                </input>
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>Street</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter street'
+                name='street'
+                value={street}
+                onChange={(e)=> setdob(e.target.value)}>                  
+                </input> 
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>Land Mark</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter landMark'
+                name='landMark'
+                value={landMark}
+                onChange={(e)=> setdob(e.target.value)}>                  
+                </input> 
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>City</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter city'
+                name='city'
+                value={city}
+                onChange={(e)=> setdob(e.target.value)}>                  
+                </input> 
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>State</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter state'
+                name='state'
+                value={state}
+                onChange={(e)=> setdob(e.target.value)}>                  
+                </input> 
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>Country</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter country'
+                name='country'
+                value={country}
+                onChange={(e)=> setdob(e.target.value)}>                  
+                </input> 
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>Zipcode</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter zipcode'
+                name='zipcode'
+                value={zipcode}
+                onChange={(e)=> setdob(e.target.value)}>                  
+                </input> 
+              </div>
+            </div>
+            <div class='mb-3 row'>
+              <label class='col-sm-4 col-form-label'>Timezone</label>
+              <div class='col-sm-8'>
+                <input type='text' class='form-control'
+                placeholder='Enter timezone'
+                name='timezone'
+                value={timezone}
+                onChange={(e)=> setdob(e.target.value)}>                  
                 </input>
                 <br></br>
                 <button className='btn btn-succcess ms-1' onClick={(e)=>
@@ -123,4 +231,4 @@ const title = () =>{
   )
 }
 
-export default AddEditPersonComponent
+export default PostPutPersonComponent
