@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const Header = () => {
   return (
     <div>
-      <h1>KLN Software Solutions...</h1>
+      <h1>KLN Software Solutions..Hotels.</h1>
       <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
@@ -16,15 +16,16 @@ const Header = () => {
       <li class="nav-item active"><Link class="nav-link text-dark" to="/Home">Home</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/Accounts">Accounts</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/Bills">Bills</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Electornics">Electornics</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/FamilyMembers">FamilyMembers</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Friends">Friends</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/HouseHoldThings">HouseHoldThings</Link></li>
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Electornics">Electornics</Link></li> */}
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/FamilyMembers">FamilyMembers</Link></li> */}
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Friends">Friends</Link></li> */}
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/HouseHoldThings">HouseHoldThings</Link></li> */}
       <li class="nav-item active"><Link class="nav-link text-dark" to="/Persons">Persons</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Relatives">Relatives</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Vehicles">Vehicles</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Assets">Assets</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Money">Money</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/menus">RestaurantMenu</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/order">RestaurantOrder</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/feedback">RestaurantFeedback</Link></li>
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Assets">Assets</Link></li> */}
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Money">Money</Link></li> */}
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
