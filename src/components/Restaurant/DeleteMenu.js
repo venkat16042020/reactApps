@@ -11,9 +11,9 @@ const DeleteMenuItem = () =>{
     const deleteMenuItem = (e) =>{
         e.preventDefault();
         if(itemId){
-            MenuServices.deleteMenuItem(itemId).then(
+            MenuServices.deleteMenu(itemId).then(
                 (response) =>{
-                    history1('/menuItems')
+                    history1('/menus')
                 }
             ).catch(error => {
                 console.log(error)
@@ -34,7 +34,7 @@ const DeleteMenuItem = () =>{
                                 <button className="btn btn-danger" onClick={(e)=>deleteMenuItem(e)}>
                                     Delte MenuItem
                                 </button>
-                                <Link to="/menuItems" className='btn btn-info ms-3'>Cancel</Link>
+                                <Link to="/menus" className='btn btn-info ms-3'>Cancel</Link>
                             </center>
                         </div>
                     </div>

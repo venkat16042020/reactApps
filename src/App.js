@@ -62,8 +62,8 @@ function App() {
 
       <Route path="/menus" element={<MenuItemsComponent/>}/>
       <Route path="/addMenuItem" element={<PostPutMenuItemComponent/>}/>
-      <Route path="/updateMenuItems/:itemId" element={<PostPutMenuItemComponent/>}/>
-      <Route path="/deletemenuItems/:itemId" element={<DeleteMenuItemComponent/>}/>
+      <Route path="/updateMenu/:itemId" element={<PostPutMenuItemComponent/>}/>
+      <Route path="/deletemenu/:itemId" element={<DeleteMenuItemComponent/>}/>
 
       <Route path="/order" element={<OrderComponent/>}/>
       <Route path="/addorder" element={<PostPutOrderComponent/>}/>

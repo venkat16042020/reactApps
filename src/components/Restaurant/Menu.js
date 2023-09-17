@@ -58,8 +58,8 @@ useEffect(()=>{
                 <td>{menuItemMapObj.numberOfItemsAvailable}</td>
                 <td>{menuItemMapObj.date}</td>               
                 <td>
-                  <Link className='btn btn-success ms-1' to={`/updateMenuItem/${menuItemMapObj.itemId}`}>Update</Link>
-                  <Link className='btn btn-danger ms-1' to={`/deleteMenuItem/${menuItemMapObj.itemId}`}>Delete</Link>
+                  <Link className='btn btn-success ms-1' to={`/updateMenu/${menuItemMapObj.itemId}`}>Update</Link>
+                  <Link className='btn btn-danger ms-1' to={`/deleteMenu/${menuItemMapObj.itemId}`}>Delete</Link>
                 </td>
                 </tr>
             )
