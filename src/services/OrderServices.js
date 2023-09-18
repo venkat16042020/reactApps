@@ -6,7 +6,7 @@ class OrderServices{
         return axios.get(BASE_REST_API_URL_ORDER + "getAllOrder")
     }
     getOrderById(orderId){
-        return axios.get(BASE_REST_API_URL_ORDER + "Order/" + orderId)
+        return axios.get(BASE_REST_API_URL_ORDER + "order/" + orderId)
     }
     addOrder(order){
         return axios.post(BASE_REST_API_URL_ORDER + "addOrder", order)

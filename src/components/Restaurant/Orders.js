@@ -28,14 +28,10 @@ useEffect(()=>{
       <br></br>
       <h2 className='text-center'>Orders</h2>
 
-      <div class='col-xs-6' className="float-right">        
-                {/* <button className='btn btn-success ms-1' onClick={(e)=>
-                addOrEditOrder(e)}>{title()}</button> */}
+      <div class='col-xs-6' className="float-right">
       <Link to = "/addOrder" className='btn btn-primary mb-2' >Add Order</Link>
               </div>
       <div>
-      {/* <h2 className='text-center'>Orders</h2> */}
-      {/* <Link to = "/addOrder" className='btn btn-primary mb-2'>Add Order</Link> */}
       </div>
       <table id ='tblkv1'>
         <thead>
@@ -64,8 +60,7 @@ useEffect(()=>{
                 <td>{orderMapObj.discount}</td>
                 <td>{orderMapObj.couponId}</td>
                 <td>{orderMapObj.isTakeAway}</td> 
-                <td>{orderMapObj.Action}</td>              
-                <td>
+                <td>{orderMapObj.Action}
                   <Link className='btn btn-success ms-1' to={`/updateOrder/${orderMapObj.orderId}`}>Update</Link>
                   <Link className='btn btn-danger ms-1' to={`/deleteOrder/${orderMapObj.orderId}`}>Delete</Link>
                 </td>

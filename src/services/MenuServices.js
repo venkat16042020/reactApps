@@ -5,6 +5,11 @@ class MenuServices{
     getAllMenu(){
         return axios.get(BASE_REST_API_URL_MENU_ITEMS + "getAllMenu")
     }
+
+    getAllMenuItems(){
+        return axios.get(BASE_REST_API_URL_MENU_ITEMS + "getAllMenuItems")
+    }
+
     getMenuByItemId(itemid){
         return axios.get(BASE_REST_API_URL_MENU_ITEMS + "menuItem/" + itemid)
     }

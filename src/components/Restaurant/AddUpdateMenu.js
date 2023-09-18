@@ -11,11 +11,22 @@ const PostPutMenuComponent = () => {
   const [cost, setCost] = useState('')
   const [numberOfItemsAvailable, setNumberOfItemsAvailable] = useState('')
   const [date, setDate] = useState('')
-  
+  const cars = ['Ford', 'BMW', 'Audi'];
+  const [myCar, setMyCar] = useState("Volvo");
+
+  const handleChange = (event) => {
+    setMyCar(event.target.value)
+  }
   const history1 = useNavigate()
   var { itemId } = useParams()
-  var menu = { itemId, menuId, itemName, cost, numberOfItemsAvailable, date}
-
+  var menu = { itemId, menuId, itemName, cost, numberOfItemsAvailable, date }
+//   // an array of country names
+// const countryNames = ["united states", "united kingdom", "syria", "spain", "mexico"]
+// //state
+// const [country, setCountry] = useState("");
+// function handleCountry({target}){
+// setCountry(target.value)
+// }
   const addOrEditMenu = (e) => {
     e.preventDefault()
     if (itemId) {
@@ -31,7 +42,7 @@ const PostPutMenuComponent = () => {
       })
     } else {
       itemId = item_id
-      menu = { itemId, menuId, itemName, cost, numberOfItemsAvailable, date}
+      menu = { itemId, menuId, itemName, cost, numberOfItemsAvailable, date }
       console.log(menu)
       MenuServices.addMenu(menu).then(
         (response) => {
@@ -80,6 +91,11 @@ const PostPutMenuComponent = () => {
                 <input type='text' class='form-control' placeholder='Enter Menu Id' name='menuId'
                   value={menuId} onChange={(e) => setMenuId(e.target.value)}>
                 </input>
+                {/* <select name="country" value={country} onChange={handleCountry}>
+  {countryNames.map((country, i) => {
+    return <option key={i} value={country} onSelect={() => handleCountry(country,i)}>{country}</option>
+  })}
+</select> */}
               </div>
               <div class="col-3">
                 <label for="text">*Item Id:</label>
@@ -101,13 +117,13 @@ const PostPutMenuComponent = () => {
               </div>
             </div>
             <div class="row mt-3 mb-3">
-            <div class="col-3">
+              <div class="col-3">
                 <label for="text">Number of Items Available:</label>
                 <input type='text' class='form-control' placeholder='Enter Number of Items Available' name='creatnumberOfItemsAvailableedBranch'
                   value={numberOfItemsAvailable} onChange={(e) => setNumberOfItemsAvailable(e.target.value)}>
                 </input>
               </div>
-            <div class="col-3">
+              <div class="col-3">
                 <label for="text">Date:</label>
                 <input type='text' class='form-control' placeholder='Enter Date' name='date'
                   value={date} onChange={(e) => setDate(e.target.value)}>
