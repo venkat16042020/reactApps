@@ -19,7 +19,7 @@ import PostPutAccountComponent from './components/Accounts/AddOrEditAccount';
 import DeleteAccountComponent from './components/Accounts/DeleteAccount';
 
 import MenuItemsComponent from './components/Restaurant/Menu'
-import PostPutMenuItemComponent from './components/Restaurant/AddUpdateMenu'
+import PostPutMenuItemComponent from './components/Restaurant/AddOrUpdateMenu'
 import DeleteMenuItemComponent from './components/Restaurant/DeleteMenu';
 
 import OrderComponent from './components/Restaurant/Orders'
@@ -33,6 +33,19 @@ import DeleteFeedbackComponent from './components/Restaurant/DeleteFeedback';
 import BillComponent from '../src/components/Restaurant/Bill'
 import PostPutBillComponent from './components/Restaurant/AddOrEditBill';
 import DeleteBillComponent from './components/Restaurant/DeleteBill';
+
+import StockComponent from './components/Restaurant/Stock'
+import PostPutStockComponent from './components/Restaurant/AddOrUpdateStock';
+import DeleteStockComponent from './components/Restaurant/DeleteStock';
+
+import InfrastructureComponent from './components/Restaurant/Infrastructure'
+import PostPutInfrastructureComponent from './components/Restaurant/AddOrUpdateInfrastructure';
+import DeleteInfrastructureComponent from './components/Restaurant/DeleteMenu';
+
+import RentComponent from './components/Restaurant/Rent'
+import PostPutRentComponent from './components/Restaurant/AddOrUpdateRent'
+import DeleteRentComponent from './components/Restaurant/DeleteRent';
+
 
 
 
@@ -81,6 +94,21 @@ function App() {
       <Route path="/addBill" element={<PostPutBillComponent/>}/>
       <Route path="/updateBill/:billId" element={<PostPutBillComponent/>}/>
       <Route path="/deleteBill/:billId" element={<DeleteBillComponent/>}/>
+
+      <Route path="/stock" element={<StockComponent/>}/>
+      <Route path="/addStock" element={<PostPutStockComponent/>}/>
+      <Route path="/updateStock/:stockId" element={<PostPutStockComponent/>}/>
+      <Route path="/deletestock/:stockId" element={<DeleteStockComponent/>}/>
+
+      <Route path="/infrastructure" element={<InfrastructureComponent/>}/>
+      <Route path="/addInfrastructure" element={<PostPutInfrastructureComponent/>}/>
+      <Route path="/updateInfrastructure/:itemId" element={<PostPutInfrastructureComponent/>}/>
+      <Route path="/deleteinfrastructure/:itemId" element={<DeleteInfrastructureComponent/>}/>
+
+      <Route path="/rent" element={<RentComponent/>}/>
+      <Route path="/addRent" element={<PostPutRentComponent/>}/>
+      <Route path="/updateRent/:rentId" element={<PostPutRentComponent/>}/>
+      <Route path="/deleterent/:rentId" element={<DeleteRentComponent/>}/>
 
       
 

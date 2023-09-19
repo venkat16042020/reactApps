@@ -16,7 +16,7 @@ const Home = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Button variant="primary">Read More</Button>
+            <Button variant="primary">More Info</Button>
           </Card.Body>
         </Card>
         <Card style={{ width: '18rem' }}>
@@ -27,7 +27,7 @@ const Home = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Button variant="primary">Read More</Button>
+            <Button variant="primary">More Info</Button>
           </Card.Body>
         </Card>
         <Card style={{ width: '18rem' }}>
@@ -38,7 +38,7 @@ const Home = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Button variant="primary">Read More</Button>
+            <Button variant="primary">More Info</Button>
           </Card.Body>
         </Card>
         <Card style={{ width: '18rem' }}>
@@ -49,7 +49,7 @@ const Home = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Button variant="primary">Read More</Button>
+            <Button variant="primary">More Info</Button>
           </Card.Body>
         </Card>
         <Card style={{ width: '18rem' }}>
@@ -60,7 +60,7 @@ const Home = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Button variant="primary">Read More</Button>
+            <Button variant="primary">More Info</Button>
           </Card.Body>
         </Card>
       </div>

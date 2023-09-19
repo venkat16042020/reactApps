@@ -20,13 +20,7 @@ const PostPutMenuComponent = () => {
   const history1 = useNavigate()
   var { itemId } = useParams()
   var menu = { itemId, menuId, itemName, cost, numberOfItemsAvailable, date }
-//   // an array of country names
-// const countryNames = ["united states", "united kingdom", "syria", "spain", "mexico"]
-// //state
-// const [country, setCountry] = useState("");
-// function handleCountry({target}){
-// setCountry(target.value)
-// }
+
   const addOrEditMenu = (e) => {
     e.preventDefault()
     if (itemId) {
