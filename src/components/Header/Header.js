@@ -21,9 +21,14 @@ const Header = () => {
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Friends">Friends</Link></li> */}
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/HouseHoldThings">HouseHoldThings</Link></li> */}
       <li class="nav-item active"><Link class="nav-link text-dark" to="/Persons">Persons</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/menus">RestaurantMenu</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/order">RestaurantOrder</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/feedback">RestaurantFeedback</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/menus">Menu</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/order">Order</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/stock">Stock</Link></li>
+
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/infrastructure">Infrastucture</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/rent">Rent</Link></li>
+
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/feedback">Feedback</Link></li>
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Assets">Assets</Link></li> */}
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Money">Money</Link></li> */}
 

@@ -40,10 +40,14 @@ useEffect(()=>{
             <th>Item Id</th>
             <th>Item Name</th>
             <th>Number Of Items</th>
-            <th>Cost</th>
+            <th>Is Take Away</th>           
             <th>Discount</th>
             <th>Coupon Id</th>
-            <th>Is Take Away</th>
+            <th>Cost</th>
+            <th>CGst</th>
+            <th>SGst</th>
+            <th>Total Gst</th>            
+            <th>Total Cost</th>
             <th>Action</th>            
           </tr>
         </thead>
@@ -56,10 +60,14 @@ useEffect(()=>{
                 <td>{orderMapObj.itemId}</td>
                 <td>{orderMapObj.itemName}</td>
                 <td>{orderMapObj.numberOfItems}</td>
-                <td>{orderMapObj.cost}</td>
+                <td>{orderMapObj.isTakeAway}</td>                                
                 <td>{orderMapObj.discount}</td>
                 <td>{orderMapObj.couponId}</td>
-                <td>{orderMapObj.isTakeAway}</td> 
+                <td>{orderMapObj.cost}</td>
+                <td>{orderMapObj.cGst}</td>
+                <td>{orderMapObj.sGst}</td>
+                <td>{orderMapObj.totalGst}</td>
+                <td>{orderMapObj.totalCost}</td>
                 <td>{orderMapObj.Action}
                   <Link className='btn btn-success ms-1' to={`/updateOrder/${orderMapObj.orderId}`}>Update</Link>
                   <Link className='btn btn-danger ms-1' to={`/deleteOrder/${orderMapObj.orderId}`}>Delete</Link>
