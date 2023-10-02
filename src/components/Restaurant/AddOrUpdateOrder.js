@@ -9,13 +9,13 @@ const PostPutOrderComponent = () => {
   const [order_Id, setOrder_Id] = useState('')
   const [itemId, setItemId] = useState('')
   const [itemName, setItemName] = useState('')
-  const [numberOfItems, setNumberOfItems] = useState('')
+  const [numberOfItems, setNumberOfItems] = useState(1.00)
   const [isTakeAway, setIsTakeAway] = useState('')
-  const [discount, setDiscount] = useState('')
+  const [discount, setDiscount] = useState(0.00)
   const [couponId, setCouponId] = useState('')
   const [cost, setCost] = useState('')
-  const [cGst, setCGst] = useState('')
-  const [sGst, setSGst] = useState('')
+  const [centralGst, setCentralGst] = useState('')
+  const [stateGst, setStateGst] = useState('')
   const [totalGst, setTotalGst] = useState('')
   const [totalCost, setTotalCost] = useState('')
   const history1 = useNavigate()
@@ -23,23 +23,20 @@ const PostPutOrderComponent = () => {
   const [allItems, setAllItems] = useState([]);
   const [item, setItem] = useState("");
 
-  function handleCGst(target){
-    setCGst(target)
-    if (target == ""){
-      target = "0";
-    }
-    setTotalGst(parseFloat(target) + parseFloat(sGst))
+  function handleNumberOfItems(target) {
+    setNumberOfItems(parseFloat(target))
+    setTotalCost(parseFloat((parseFloat(target) * parseFloat(cost)) - parseFloat(discount)))
   }
 
-  function hangleSGst(target){
-    if (target == ""){
-      target = "0";
-    }
-    console.log(target)
-    setSGst(target)
-    setTotalGst(parseFloat(target) + parseFloat(cGst))
+  function handleDiscount(target) {
+    setDiscount(parseFloat(target))
+    setTotalCost(parseFloat((parseFloat(numberOfItems) * parseFloat(cost)) - parseFloat(target)))
   }
 
+  function handleCost(target) {
+    setCost(parseFloat(target))
+    setTotalCost(parseFloat((parseFloat(numberOfItems) * parseFloat(target)) - parseFloat(discount)))
+  }
   function handleItem({ target }) {
     console.log(target)
     console.log(target.value)
@@ -48,13 +45,18 @@ const PostPutOrderComponent = () => {
     MenuServices.getMenuByItemId(target.value).then((response) => {
       console.log(response.data)
       setItemName(response.data.itemName)
-      setCost(response.data.cost)
+      setCost(response.data.totalCost)
+      setCentralGst(response.data.centralGst)
+      setStateGst(response.data.stateGst)
+      setTotalGst(response.data.totalGst)
+      setTotalCost(parseFloat((parseFloat(numberOfItems) * parseFloat(response.data.totalCost)) - parseFloat(discount)))
+
     }).catch(error => {
       console.log(error)
     })
   }
   var { orderId } = useParams()
-  var order = { orderId, itemId, itemName, numberOfItems, isTakeAway, discount, couponId, cost, cGst, sGst, totalGst, totalCost }
+  var order = { orderId, itemId, itemName, numberOfItems, isTakeAway, discount, couponId, cost, centralGst, stateGst, totalGst, totalCost }
 
   const addOrEditOrder = (e) => {
     e.preventDefault()
@@ -71,7 +73,7 @@ const PostPutOrderComponent = () => {
       })
     } else {
       orderId = order_Id
-      order = { orderId, itemId, itemName, numberOfItems, isTakeAway, discount, couponId, cost, cGst, sGst, totalGst, totalCost }
+      order = { orderId, itemId, itemName, numberOfItems, isTakeAway, discount, couponId, cost, centralGst, stateGst, totalGst, totalCost }
       console.log(order)
       OrderServices.addOrder(order).then(
         (response) => {
@@ -101,11 +103,10 @@ const PostPutOrderComponent = () => {
       setDiscount(response.data.discount)
       setCouponId(response.data.couponId)
       setCost(response.data.cost)
-      setCGst(response.data.cGst)
-      setSGst(response.data.sGst)
+      setCentralGst(response.data.centralGst)
+      setStateGst(response.data.stateGst)
       setTotalGst(response.data.totalGst)
       setTotalCost(response.data.totalCost)
-
     }).catch(error => {
       console.log(error)
     })
@@ -148,62 +149,84 @@ const PostPutOrderComponent = () => {
               </div>
               <div class="col-3">
                 <label for="text">Item Name:</label>
-                <input type='text' class='form-control' placeholder='Enter ItemName' name='itemName'
-                  value={itemName} onChange={(e) => setItemName(e.target.value)}>
+                <input type='text' class='form-control' placeholder='Enter Item Name' name='itemName'
+                  value={itemName} disabled onChange={(e) => setItemName(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
                 <label for="text">Number Of Items:</label>
-                <input type='text' class='form-control' placeholder='NumberOfItems' name='numberOfItems'
-                  value={numberOfItems} onChange={(e) => setNumberOfItems(e.target.value)}>
+                <input type='text' class='form-control' placeholder='Number Of Items' name='numberOfItems'
+                  value={numberOfItems} onChange={(e) => handleNumberOfItems(e.target.value)}>
                 </input>
               </div>
-              <div class="col-3">
+              {/* <div class="col-3">
                 <label for="text">Is Take Away:</label>
-                <input type='text' class='form-control' placeholder='IsTakeAway' name='isTakeAway'
-                  value={isTakeAway} onChange={(e) => setIsTakeAway(e.target.value)}>
+                <input type='text' class='form-control' placeholder='Is Take Away' name='isTakeAway'
+                  value={isTakeAway} onChange={(e) => setIsTakeAway(e.target.value==="yes" ? "true" : "false")}>
+                </input>
+              </div> */}
+              <div class="col-3">
+                <div className="radio">
+                  <label>
+                    <input
+                      type="radio"
+                      name="isTakeAway"
+                      value="true"
+                      onChange={(e) => setIsTakeAway(e.target.value==="yes" ? "true" : "false")} />
+                    Yes
+                  </label>
+                </div>
+                <div className="radio">
+                  <label>
+                    <input
+                      type="radio"
+                      name="isTakeAway"
+                      value="false"
+                      onChange={(e) => setIsTakeAway(e.target.value==="no" ? "false" : "true")} />
+                    No
+                  </label>
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="text">CouponId:</label>
+                <input type='text' class='form-control' placeholder='Coupon Id' name='couponId'
+                  value={couponId} onChange={(e) => setCouponId(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
                 <label for="text">Discount:</label>
                 <input type='text' class='form-control' placeholder='Discount' name='discount'
-                  value={discount} onChange={(e) => setDiscount(e.target.value)}>
-                </input>
-              </div>
-              <div class="col-3">
-                <label for="text">CouponId:</label>
-                <input type='text' class='form-control' placeholder='CouponId' name='couponId'
-                  value={couponId} onChange={(e) => setCouponId(e.target.value)}>
+                  value={discount} onChange={(e) => handleDiscount(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
                 <label for="text">Cost:</label>
                 <input type='text' class='form-control' placeholder='Cost' name='cost'
-                  value={cost} onChange={(e) => setCost(e.target.value)}>
+                  value={cost} disabled onChange={(e) => handleCost(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">CGst:</label>
-                <input type='text' class='form-control' placeholder='CGst' name='cGst'
-                  value={cGst} onChange={(e) => handleCGst(e.target.value)}>
+                <label for="text">Central Gst:</label>
+                <input type='text' class='form-control' placeholder='Central Gst' name='centralGst'
+                  value={centralGst} disabled onChange={(e) => setCentralGst(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">SGst:</label>
-                <input type='text' class='form-control' placeholder='SGst' name='sGst'
-                  value={sGst} onChange={(e) => hangleSGst(e.target.value)}>
+                <label for="text">State Gst:</label>
+                <input type='text' class='form-control' placeholder='State Gst' name='stateGst'
+                  value={stateGst} disabled onChange={(e) => setStateGst(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
                 <label for="text">Total Gst:</label>
-                <input type='text' class='form-control' placeholder='TotalGst' name='totalGst'
-                  value={totalGst} onChange={(e) => setTotalGst(e.target.value)}>
+                <input type='text' class='form-control' placeholder='Total Gst' name='totalGst'
+                  value={totalGst} disabled onChange={(e) => setTotalGst(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
                 <label for="text">Total Cost:</label>
-                <input type='text' class='form-control' placeholder='TotalCost' name='totalCost'
-                  value={totalCost} onChange={(e) => setTotalCost(e.target.value)}>
+                <input type='text' class='form-control' placeholder='Total Cost' name='totalCost'
+                  value={totalCost} disabled onChange={(e) => setTotalCost(e.target.value)}>
                 </input>
               </div>
               <div class='col-sm-8'>

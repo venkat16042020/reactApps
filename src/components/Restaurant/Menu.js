@@ -43,8 +43,8 @@ const MenuComponent = () => {
             <th>Number of Items Available</th>
             <th>Date</th>
             <th>Cost</th>
-            <th>CGst</th>
-            <th>SGst</th>
+            <th>Central Gst</th>
+            <th>State Gst</th>
             <th>Total Gst</th>
             <th>Total Cost</th>
             <th>Action</th>
@@ -61,8 +61,8 @@ const MenuComponent = () => {
                   <td>{menuItemMapObj.numberOfItemsAvailable}</td>
                   <td>{menuItemMapObj.date}</td>
                   <td>{menuItemMapObj.cost}</td>
-                  <td>{menuItemMapObj.cGst}</td>
-                  <td>{menuItemMapObj.sGst}</td>
+                  <td>{menuItemMapObj.centralGst}</td>
+                  <td>{menuItemMapObj.stateGst}</td>
                   <td>{menuItemMapObj.totalGst}</td>
                   <td>{menuItemMapObj.totalCost}</td>
                   <td>

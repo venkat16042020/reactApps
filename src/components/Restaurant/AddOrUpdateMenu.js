@@ -11,29 +11,29 @@ const PostPutMenuComponent = () => {
   const [numberOfItemsAvailable, setNumberOfItemsAvailable] = useState('')
   const [date, setDate] = useState('')
   const [cost, setCost] = useState(0.00)
-  const [cGst, setCGst] = useState(0.00)
-  const [sGst, setSGst] = useState(0.00)
+  const [centralGst, setCentralGst] = useState(0.00)
+  const [stateGst, setStateGst] = useState(0.00)
   const [totalGst, setTotalGst] = useState(0.00)
   const [totalCost, setTotalCost] = useState(0.00)
   const history1 = useNavigate()
   var { itemId } = useParams()
-  var menu = { itemId, menuId, itemName, numberOfItemsAvailable, date, cost, cGst, sGst, totalGst, totalCost }
+  var menu = { itemId, menuId, itemName, numberOfItemsAvailable, date, cost, centralGst, stateGst, totalGst, totalCost }
 
   function handleCost(target) {
     setCost(parseFloat(target))
-    setTotalGst(parseFloat(cGst) + parseFloat(sGst))
+    setTotalGst(parseFloat(centralGst) + parseFloat(stateGst))
     setTotalCost(parseFloat(target) + (parseFloat(target) * parseFloat(totalGst) / 100))
   }
 
   function handleCGst(target) {
-    setCGst(parseFloat(target))
-    setTotalGst(parseFloat(target) + parseFloat(sGst))
+    setCentralGst(parseFloat(target))
+    setTotalGst(parseFloat(target) + parseFloat(stateGst))
     setTotalCost(parseFloat(cost) + (parseFloat(cost) * parseFloat(totalGst) / 100))
   }
 
   function handleSGst(target) {
-    setSGst(parseFloat(target))
-    setTotalGst(parseFloat(target) + parseFloat(cGst))
+    setStateGst(parseFloat(target))
+    setTotalGst(parseFloat(target) + parseFloat(centralGst))
     setTotalCost(parseFloat(cost) + (parseFloat(cost) * (totalGst / 100)))
   }
 
@@ -42,11 +42,8 @@ const PostPutMenuComponent = () => {
   }
 
   const addOrEditMenu = (e) => {
-
     e.preventDefault()
     if (itemId) {
-      console.log("Here")
-      console.log("Editing menu...")
       MenuServices.updateMenu(itemId, menu).then(
         (response) => {
           history1('/menus')
@@ -55,10 +52,9 @@ const PostPutMenuComponent = () => {
         console.log(error)
       })
     } else {
-      console.log("Here...........")
       setDate(getCurrentDate())
       itemId = item_id
-      menu = { itemId, menuId, itemName, numberOfItemsAvailable, date, cost, cGst, sGst, totalGst, totalCost }
+      menu = { itemId, menuId, itemName, numberOfItemsAvailable, date, cost, centralGst, stateGst, totalGst, totalCost }
       console.log(menu)
       MenuServices.addMenu(menu).then(
         (response) => {
@@ -71,9 +67,7 @@ const PostPutMenuComponent = () => {
   }
 
   useEffect(() => {
-    // console.log(939393)
     if (itemId) {
-      // console.log(2222)
       MenuServices.getMenuByItemId(itemId).then((response) => {
         setItem_Id(response.data.itemId)
         setMenuId(response.data.menuId)
@@ -81,8 +75,8 @@ const PostPutMenuComponent = () => {
         setCost(response.data.cost)
         setNumberOfItemsAvailable(response.data.numberOfItemsAvailable)
         setDate(response.data.date)
-        setCGst(response.data.cGst)
-        setSGst(response.data.sGst)
+        setCentralGst(response.data.centralGst)
+        setStateGst(response.data.stateGst)
         setTotalGst(response.data.totalGst)
         setTotalCost(response.data.totalCost)
       }).catch(error => {
@@ -90,7 +84,6 @@ const PostPutMenuComponent = () => {
       })
     }
     else {
-      // console.log(33)
       setDate(getCurrentDate())
     }
     // return () => console.log("Cleanup..");
@@ -116,25 +109,25 @@ const PostPutMenuComponent = () => {
           <form>
             <div class="row mt-3 mb-3">
               <div class="col-3">
-                <label htmlFor="text">*Menu Id:</label>
+                <label for="text">*Menu Id:</label>
                 <input type='text' class='form-control' placeholder='Enter Menu Id' name='menuId'
                   value={menuId} onChange={(e) => setMenuId(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label htmlFor="text">*Item Id:</label>
+                <label for="text">*Item Id:</label>
                 <input type='text' class='form-control' placeholder='Enter Menu Name' name='menuName'
                   value={itemId} onChange={(e) => setItem_Id(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label htmlFor="text">Item Name:</label>
+                <label for="text">Item Name:</label>
                 <input type='text' class='form-control' placeholder='Enter Item Name' name='itemName'
                   value={itemName} onChange={(e) => setItemName(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label htmlFor="text">Number of Items Available:</label>
+                <label for="text">Number of Items Available:</label>
                 <input type='text' class='form-control' placeholder='Enter Number of Items Available' name='creatnumberOfItemsAvailableedBranch'
                   value={numberOfItemsAvailable} onChange={(e) => setNumberOfItemsAvailable(e.target.value)}>
                 </input>
@@ -142,40 +135,40 @@ const PostPutMenuComponent = () => {
             </div>
             <div class="row mt-3 mb-3">
             <div class="col-3">
-                <label htmlFor="text">Date:</label>
+                <label for="text">Date:</label>
                 <input type='text' class='form-control' placeholder='Enter Date' name='date'
                   value={date} onChange={(e) => setDate(e.target.value)}>
                 </input>
               </div>
             <div class="col-3">
-                <label htmlFor="text">Cost:</label>
+                <label for="text">Cost:</label>
                 <input type='text' class='form-control' placeholder='Enter Cost' name='cost'
                   value={cost} onChange={(e) => handleCost(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label htmlFor="text">cGst:</label>
-                <input type='text' class='form-control' placeholder='Enter cGst' name='cGst'
-                  value={cGst} onChange={(e) => handleCGst(e.target.value)}>
+                <label for="text">centralGst:</label>
+                <input type='text' class='form-control' placeholder='Enter centralGst' name='centralGst'
+                  value={centralGst} onChange={(e) => handleCGst(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label htmlFor="text">sGst:</label>
-                <input type='text' class='form-control' placeholder='Enter sGst' name='sGst'
-                  value={sGst} onChange={(e) => handleSGst(e.target.value)}>
+                <label for="text">stateGst:</label>
+                <input type='text' class='form-control' placeholder='Enter stateGst' name='stateGst'
+                  value={stateGst} onChange={(e) => handleSGst(e.target.value)}>
                 </input>
               </div>
               
             </div>
             <div class="row mt-3 mb-3">
             <div class="col-3">
-                <label htmlFor="text">Total Gst:</label>
+                <label for="text">Total Gst:</label>
                 <input type='text' class='form-control' placeholder='Enter Total Gst' name='totalGst'
                   value={totalGst} onChange={(e) => setTotalGst(e.target.value)}>
                 </input>
               </div>
             <div class="col-3">
-                <label htmlFor="text">Total Cost:</label>
+                <label for="text">Total Cost:</label>
                 <input type='text' class='form-control' placeholder='Enter TotalCost' name='totalCost'
                   value={totalCost} onChange={(e) => setTotalCost(e.target.value)}>
                 </input>
@@ -186,7 +179,6 @@ const PostPutMenuComponent = () => {
                   addOrEditMenu(e)}>{title()}</button>
                 <Link to="/menus" className='btn btn-danger ms-1'>Cancel</Link>
                 <Link to="/menus" className='btn btn-info ms-1'>Clear</Link>
-
               </div>
             </div>
           </form>
