@@ -13,7 +13,6 @@ const RentComponent = () => {
   const records = rent.slice(firstIndex, lastIndex)
   const nPage = Math.ceil(rent.length/recordsPerPage)
   const numbers = [...Array(nPage + 1).keys()].slice(1)
-  
 useEffect(()=>{
   setCurrentPage(1)
   RentServices.getAllRent().then((response)=>{

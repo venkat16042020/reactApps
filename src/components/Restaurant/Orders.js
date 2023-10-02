@@ -13,7 +13,7 @@ const OrdersComponent = () => {
   const records = order.slice(firstIndex, lastIndex)
   const nPage = Math.ceil(order.length/recordsPerPage)
   const numbers = [...Array(nPage + 1).keys()].slice(1)
-  
+
 useEffect(()=>{
   setCurrentPage(1)
   OrderServices.getAllOrders().then((response)=>{
