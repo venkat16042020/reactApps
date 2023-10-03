@@ -13,11 +13,11 @@ const PostPutOrderComponent = () => {
   const [isTakeAway, setIsTakeAway] = useState('')
   const [discount, setDiscount] = useState(0.00)
   const [couponId, setCouponId] = useState('')
-  const [cost, setCost] = useState('')
-  const [centralGst, setCentralGst] = useState('')
-  const [stateGst, setStateGst] = useState('')
-  const [totalGst, setTotalGst] = useState('')
-  const [totalCost, setTotalCost] = useState('')
+  const [cost, setCost] = useState(0.00)
+  const [centralGst, setCentralGst] = useState(0.00)
+  const [stateGst, setStateGst] = useState(0.00)
+  const [totalGst, setTotalGst] = useState(0.00)
+  const [totalCost, setTotalCost] = useState(0.00)
   const history1 = useNavigate()
 
   const [allItems, setAllItems] = useState([]);
@@ -166,25 +166,24 @@ const PostPutOrderComponent = () => {
                 </input>
               </div> */}
               <div class="col-3">
+              <label for="text">Is Take Away:</label>
+
                 <div className="radio">
-                  <label>
                     <input
                       type="radio"
                       name="isTakeAway"
                       value="true"
                       onChange={(e) => setIsTakeAway(e.target.value==="yes" ? "true" : "false")} />
                     Yes
-                  </label>
                 </div>
                 <div className="radio">
-                  <label>
+     
                     <input
                       type="radio"
                       name="isTakeAway"
                       value="false"
                       onChange={(e) => setIsTakeAway(e.target.value==="no" ? "false" : "true")} />
                     No
-                  </label>
                 </div>
               </div>
               <div class="col-3">
