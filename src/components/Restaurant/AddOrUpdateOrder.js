@@ -60,7 +60,9 @@ const PostPutOrderComponent = () => {
 
   const addOrEditOrder = (e) => {
     e.preventDefault()
-    if (orderId) {
+    console.log("dkdkk")
+    console.log(orderId)
+    if (orderId && (orderId!=="undefined")) {
       console.log("Editing order...")
       console.log(orderId)
       console.log(order)
@@ -94,6 +96,7 @@ const PostPutOrderComponent = () => {
   }, [])
 
   useEffect(() => {
+    if (orderId) {
     OrderServices.getOrderById(orderId).then((response) => {
       setOrder_Id(response.data.orderId)
       setItemId(response.data.itemId)
@@ -109,7 +112,7 @@ const PostPutOrderComponent = () => {
       setTotalCost(response.data.totalCost)
     }).catch(error => {
       console.log(error)
-    })
+    })}
   }, [])
 
   const title = () => {
