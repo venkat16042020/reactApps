@@ -50,6 +50,15 @@ import AdminComponent from './components/OngolePublicSchool/Admin'
 import PostPutAdminComponent from './components/OngolePublicSchool/AddOrUpdateAdmin'
 import DeleteAdminComponent from './components/OngolePublicSchool/DeleteAdmin'
 
+import AttendanceComponent from './components/OngolePublicSchool/Attendance'
+import PostPutAttendanceComponent from './components/OngolePublicSchool/AddOrUpdateAttendance'
+import DeleteAttendanceComponent from './components/OngolePublicSchool/DeleteAttendance'
+
+import StudentsComponent from './components/OngolePublicSchool/Students'
+import PostPutStudentsComponent from './components/OngolePublicSchool/AddOrUpdateStudents'
+import DeleteStudentsComponent from './components/OngolePublicSchool/DeleteStudents'
+
+
 function App() {
   return (
       <div className="App">
@@ -114,6 +123,17 @@ function App() {
             <Route path="/addAdmin" element={<PostPutAdminComponent />} />
             <Route path="/updateAdmin/:adminId" element={<PostPutAdminComponent />} />
             <Route path="/deleteadmin/:adminId" element={<DeleteAdminComponent />} />
+          
+            <Route path="/attendance" element={<AttendanceComponent />} />
+            <Route path="/addAttendance" element={<PostPutAttendanceComponent />} />
+            <Route path="/updateAttendance/:attendanceId" element={<PostPutAttendanceComponent />} />
+            <Route path="/deleteattendance/:attendanceId" element={<DeleteAttendanceComponent />} />
+
+            <Route path="/students" element={<StudentsComponent />} />
+            <Route path="/addStudents" element={<PostPutStudentsComponent />} />
+            <Route path="/updateStudents/:studentsId" element={<PostPutStudentsComponent />} />
+            <Route path="/deletestudents/:studentsId" element={<DeleteStudentsComponent />} />
+          
           
           </Routes>
         </BrowserRouter>

@@ -1,19 +1,19 @@
 import { useNavigate, useParams } from "react-router"
-import PersonServices from "../../services/PersonServices"
+import StudentsServices from "../../services/StudentsServices"
 import Header from "../Header/Header"
 import { Link } from 'react-router-dom'
 
 
-const DeleteRestaurant = () =>{
+const DeleteStudentsComponent = () =>{
     const history1 = useNavigate()
-    var {personId} = useParams()
+    var {studentsId} = useParams()
 
-    const deletePerson = (e) =>{
+    const deleteStudents = (e) =>{
         e.preventDefault();
-        if(personId){
-            PersonServices.deletePerson(personId).then(
+        if(studentsId){
+            StudentsServices.deleteStudents(studentsId).then(
                 (response) =>{
-                    history1('/persons')
+                    history1('/students')
                 }
             ).catch(error => {
                 console.log(error)
@@ -28,13 +28,13 @@ const DeleteRestaurant = () =>{
                 <div className="row">
                     <div className="card col-md-6 offset-md-3">
                         <br></br>
-                        <h3 className="text-center">Delete person - {personId}</h3>
+                        <h3 className="text-center">Delete students - {studentsId}</h3>
                         <div className="card-body">
                             <center>
-                                <button className="btn btn-danger" onClick={(e)=>deletePerson(e)}>
-                                    Delte Person
+                                <button className="btn btn-danger" onClick={(e)=>deleteStudents(e)}>
+                                    Delte Students
                                 </button>
-                                <Link to="/persons" className='btn btn-info ms-3'>Cancel</Link>
+                                <Link to="/students" className='btn btn-info ms-3'>Cancel</Link>
                             </center>
                         </div>
                     </div>
@@ -44,4 +44,4 @@ const DeleteRestaurant = () =>{
     )
 }
 
-export default DeleteRestaurant
+export default DeleteStudentsComponent

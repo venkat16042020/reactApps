@@ -4,7 +4,7 @@ import Header from "../Header/Header"
 import { Link } from 'react-router-dom'
 
 
-const DeleteAdmin = () =>{
+const DeleteAdminComponent = () =>{
     const history1 = useNavigate()
     var {adminId} = useParams()
 
@@ -44,4 +44,4 @@ const DeleteAdmin = () =>{
     )
 }
 
-export default DeleteAdmin
+export default DeleteAdminComponent

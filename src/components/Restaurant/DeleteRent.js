@@ -4,7 +4,7 @@ import Header from "../Header/Header"
 import { Link } from 'react-router-dom'
 
 
-const DeleteRent = () =>{
+const DeleteRentComponent = () =>{
     const history1 = useNavigate()
     var {rentId} = useParams()
 
@@ -44,4 +44,4 @@ const DeleteRent = () =>{
     )
 }
 
-export default DeleteRent
+export default DeleteRentComponent
