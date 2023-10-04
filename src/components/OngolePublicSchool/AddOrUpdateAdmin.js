@@ -3,10 +3,10 @@ import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import AdminServices from '../../services/AdminServices'
 import Header from '../Header/Header'
-import { getCurrentDate } from '../KlnReactLibs/KLN_Lib'
+
 const PostPutAdminComponent = () => {
-  const [adminId, setAdminId] = useState('')
-  const [studentsId, SetStudentsId] = useState('')
+  const [admin_Id, setAdmin_Id] = useState('')
+  const [studentsId, setStudentsId] = useState('')
   const [staffsId, setstaffsId] = useState('')
   const [nonStaffsId, setnonStaffsId] = useState('')
   const [games, setgames] = useState('')
@@ -16,48 +16,29 @@ const PostPutAdminComponent = () => {
   const [attendance, setattendance] = useState('')
   const [salaries, setsalaries] = useState('')
   const history1 = useNavigate()
-  var { itemId } = useParams()
+  var { adminId } = useParams()
   var admin = { adminId, studentsId, staffsId, nonStaffsId, games, vehicles, infrastructure, infrastructure, media, attendance, salaries}
-  function handleCost(target) {
-    setCost(parseFloat(target))
-    setTotalGst(parseFloat(centralGst) + parseFloat(stateGst))
-    setTotalCost(parseFloat(target) + (parseFloat(target) * parseFloat(totalGst) / 100))
-  }
-
-  function handleCGst(target) {
-    setCentralGst(parseFloat(target))
-    setTotalGst(parseFloat(target) + parseFloat(stateGst))
-    setTotalCost(parseFloat(cost) + (parseFloat(cost) * parseFloat(totalGst) / 100))
-  }
-
-  function handleSGst(target) {
-    setStateGst(parseFloat(target))
-    setTotalGst(parseFloat(target) + parseFloat(centralGst))
-    setTotalCost(parseFloat(cost) + (parseFloat(cost) * (totalGst / 100)))
-  }
-
-  const clearAdmin = () => {
-    document.getElementById("adminId").reset();
-  }
 
   const addOrEditAdmin = (e) => {
     e.preventDefault()
     if (adminId) {
+    console.log("Editing admin...")
+    console.log(adminId)
+    console.log(admin)
       AdminServices.updateAdmin(adminId, admin).then(
         (response) => {
-          history1('/admins')
+          history1('/admin')
         }
       ).catch(error => {
         console.log(error)
       })
     } else {
-      setDate(getCurrentDate())
       adminId = admin_Id
       admin = { adminId, studentsId, staffsId, nonStaffsId, games, vehicles, infrastructure, infrastructure, media, attendance, salaries }
       console.log(admin)
       AdminServices.addAdmin(admin).then(
         (response) => {
-          history1('/admins')
+          history1('/admin')
         }
       ).catch(error => {
         console.log(error)
@@ -68,8 +49,8 @@ const PostPutAdminComponent = () => {
   useEffect(() => {
     if (adminId) {
       AdminServices.getAdminByAdminId(adminId).then((response) => {
-        setAdminId(response.data.adminId)
-        setstudentsId(response.data.studentsId)
+        setAdmin_Id(response.data.adminId)
+        setStudentsId(response.data.studentsId)
         setstaffsId(response.data.staffsId)
         setnonStaffsId(response.data.nonStaffsId)
         setgames(response.data.games)
@@ -78,18 +59,14 @@ const PostPutAdminComponent = () => {
         setmedia(response.data.media)
         setattendance(response.data.attendance)
         setsalaries(response.data.salaries)
+
       }).catch(error => {
         console.log(error)
-      })
-    }
-    else {
-      setDate(getCurrentDate())
-    }
-    // return () => console.log("Cleanup..");
-  }, [])
+      })}
+    }, [])
 
   const title = () => {
-    if (itemId) {
+    if (adminId) {
       return "Update Admin"
     } else {
       return "Add Admin"
@@ -110,7 +87,7 @@ const PostPutAdminComponent = () => {
               <div class="col-3">
                 <label for="text">*Admin Id:</label>
                 <input type='text' class='form-control' placeholder='Enter Admin Id' name='adminId'
-                  value={adminId} onChange={(e) => setAdminId(e.target.value)}>
+                  value={adminId} onChange={(e) => setAdmin_Id(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
@@ -122,7 +99,7 @@ const PostPutAdminComponent = () => {
                 <div class="col-3">
                 <label for="text">*Staffs Id:</label>
                 <input type='text' class='form-control' placeholder='Staffs Id' name='staffsId'
-                  value={staffsId} onChange={(e) => setStaffsId(e.target.value)}>
+                  value={staffsId} onChange={(e) => setstaffsId(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
@@ -171,8 +148,8 @@ const PostPutAdminComponent = () => {
                 <br></br>
                 <button className='btn btn-success ms-1' onClick={(e) =>
                   addOrEditAdmin(e)}>{title()}</button>
-                <Link to="/admins" className='btn btn-danger ms-1'>Cancel</Link>
-                <Link to="/admins" className='btn btn-info ms-1'>Clear</Link>
+                <Link to="/admin" className='btn btn-danger ms-1'>Cancel</Link>
+                <Link to="/admin" className='btn btn-info ms-1'>Clear</Link>
               </div>
             </div>
           </form>

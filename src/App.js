@@ -46,6 +46,10 @@ import RentComponent from './components/Restaurant/Rent'
 import PostPutRentComponent from './components/Restaurant/AddOrUpdateRent'
 import DeleteRentComponent from './components/Restaurant/DeleteRent';
 
+import AdminComponent from './components/OngolePublicSchool/Admin'
+import PostPutAdminComponent from './components/OngolePublicSchool/AddOrUpdateAdmin'
+import DeleteAdminComponent from './components/OngolePublicSchool/DeleteAdmin'
+
 function App() {
   return (
       <div className="App">
@@ -105,6 +109,12 @@ function App() {
             <Route path="/addRent" element={<PostPutRentComponent />} />
             <Route path="/updateRent/:rentId" element={<PostPutRentComponent />} />
             <Route path="/deleterent/:rentId" element={<DeleteRentComponent />} />
+
+            <Route path="/admin" element={<AdminComponent />} />
+            <Route path="/addAdmin" element={<PostPutAdminComponent />} />
+            <Route path="/updateAdmin/:adminId" element={<PostPutAdminComponent />} />
+            <Route path="/deleteadmin/:adminId" element={<DeleteAdminComponent />} />
+          
           </Routes>
         </BrowserRouter>
       </div>
