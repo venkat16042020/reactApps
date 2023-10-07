@@ -1,19 +1,19 @@
 import { useNavigate, useParams } from "react-router"
-import NonStaffsServices from "../../services/NonStaffsServices"
+import StaffServices from "../../services/StaffServices"
 import Header from "../Header/Header"
 import { Link } from 'react-router-dom'
 
 
-const DeleteNonStaffsComponent = () =>{
+const DeleteStaffComponent = () =>{
     const history1 = useNavigate()
-    var {nonStaffsId} = useParams()
+    var {staffsId} = useParams()
 
-    const deleteNonStaffs = (e) =>{
+    const deleteStaff = (e) =>{
         e.preventDefault();
-        if(nonStaffsId){
-            NonStaffsServices.deleteNonStaffs(nonStaffsId).then(
+        if(staffsId){
+            StaffServices.deleteStaff(staffsId).then(
                 (response) =>{
-                    history1('/nonStaffs')
+                    history1('/staffs')
                 }
             ).catch(error => {
                 console.log(error)
@@ -28,13 +28,13 @@ const DeleteNonStaffsComponent = () =>{
                 <div className="row">
                     <div className="card col-md-6 offset-md-3">
                         <br></br>
-                        <h3 className="text-center">Delete nonStaffs - {nonStaffsId}</h3>
+                        <h3 className="text-center">Delete staffs - {staffsId}</h3>
                         <div className="card-body">
                             <center>
-                                <button className="btn btn-danger" onClick={(e)=>deleteNonStaffs(e)}>
-                                    Delte NonStaffs
+                                <button className="btn btn-danger" onClick={(e)=>deleteStaff(e)}>
+                                    Delte Staff
                                 </button>
-                                <Link to="/nonStaffs" className='btn btn-info ms-3'>Cancel</Link>
+                                <Link to="/staffs" className='btn btn-info ms-3'>Cancel</Link>
                             </center>
                         </div>
                     </div>
@@ -44,4 +44,4 @@ const DeleteNonStaffsComponent = () =>{
     )
 }
 
-export default DeleteNonStaffsComponent
+export default DeleteStaffComponent

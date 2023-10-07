@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import StaffsServices from '../../services/StaffsServices'
+import StaffServices from '../../services/StaffServices'
 import Header from '../Header/Header'
 
-const PostPutStaffsComponent = () => {
-  const [staffs_Id, setStaffs_Id] = useState('')
+const PostPutStaffComponent = () => {
+  const [staffs_Id, setStaff_Id] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [gender, setGender] = useState('')
@@ -18,13 +18,13 @@ const PostPutStaffsComponent = () => {
   var { staffsId } = useParams()
   var staffs = { staffsId, firstName, lastName, gender, age, address, phoneNo, emailId  }
 
-  const addOrEditStaffs = (e) => {
+  const addOrEditStaff = (e) => {
     e.preventDefault()
     if (staffsId) {
     console.log("Editing staffs...")
     console.log(staffsId)
     console.log(staffs)
-      StaffsServices.updateStaffs(staffsId, staffs).then(
+      StaffServices.updateStaff(staffsId, staffs).then(
         (response) => {
           history1('/staffs')
         }
@@ -35,7 +35,7 @@ const PostPutStaffsComponent = () => {
       staffsId = staffs_Id
       staffs = { staffsId, firstName, lastName,gender, age, address, phoneNo, emailId  }
       console.log(staffs)
-      StaffsServices.addStaffs(staffs).then(
+      StaffServices.addStaff(staffs).then(
         (response) => {
           history1('/staffs')
         }
@@ -47,8 +47,8 @@ const PostPutStaffsComponent = () => {
 
   useEffect(() => {
     if (staffsId) {
-      StaffsServices.getStaffsByStaffsId(staffsId).then((response) => {
-        setStaffs_Id(response.data.staffsId)
+      StaffServices.getStaffByStaffId(staffsId).then((response) => {
+        setStaff_Id(response.data.staffsId)
         setFirstName(response.data.firstName)
         setLastName(response.data.lastName)
         setGender(response.data.gender)
@@ -64,9 +64,9 @@ const PostPutStaffsComponent = () => {
 
   const title = () => {
     if (staffsId) {
-      return "Update Staffs"
+      return "Update Staff"
     } else {
-      return "Add Staffs"
+      return "Add Staff"
     }
   }
 
@@ -82,9 +82,9 @@ const PostPutStaffsComponent = () => {
           <form>
             <div class="row mt-3 mb-3">
               <div class="col-3">
-                <label for="text">*Staffs Id:</label>
-                <input type='text' class='form-control' placeholder='Enter Staffs Id' name='staffsId'
-                  value={staffsId} onChange={(e) => setStaffs_Id(e.target.value)}>
+                <label for="text">*Staff Id:</label>
+                <input type='text' class='form-control' placeholder='Enter Staff Id' name='staffsId'
+                  value={staffsId} onChange={(e) => setStaff_Id(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
@@ -132,7 +132,7 @@ const PostPutStaffsComponent = () => {
               <div class='col-sm-8'>
                 <br></br>
                 <button className='btn btn-success ms-1' onClick={(e) =>
-                  addOrEditStaffs(e)}>{title()}</button>
+                  addOrEditStaff(e)}>{title()}</button>
                 <Link to="/staffs" className='btn btn-danger ms-1'>Cancel</Link>
                 <Link to="/staffs" className='btn btn-info ms-1'>Clear</Link>
               </div>
@@ -144,4 +144,4 @@ const PostPutStaffsComponent = () => {
   )
 }
 
-export default PostPutStaffsComponent
+export default PostPutStaffComponent

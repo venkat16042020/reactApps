@@ -58,13 +58,13 @@ import StudentsComponent from './components/OngolePublicSchool/Students'
 import PostPutStudentsComponent from './components/OngolePublicSchool/AddOrUpdateStudents'
 import DeleteStudentsComponent from './components/OngolePublicSchool/DeleteStudents'
 
-import StaffsComponent from './components/OngolePublicSchool/Staffs'
-import PostPutStaffsComponent from './components/OngolePublicSchool/AddOrUpdateStaffs'
-import DeleteStaffsComponent from './components/OngolePublicSchool/DeleteStaffs'
+import StaffComponent from './components/OngolePublicSchool/Staff'
+import PostPutStaffComponent from './components/OngolePublicSchool/AddOrUpdateStaff'
+import DeleteStaffComponent from './components/OngolePublicSchool/DeleteStaff'
 
-import NonStaffsComponent from './components/OngolePublicSchool/NonStaffs'
-import PostPutNonStaffsComponent from './components/OngolePublicSchool/AddOrUpdateClasses'
-import DeleteNonStaffsComponent from './components/OngolePublicSchool/DeleteNonStaffs'
+import NonStaffComponent from './components/OngolePublicSchool/NonStaff'
+import PostPutNonStaffComponent from './components/OngolePublicSchool/AddOrUpdateNonStaff'
+import DeleteNonStaffComponent from './components/OngolePublicSchool/DeleteNonStaff'
 
 import ClassesComponent from './components/OngolePublicSchool/Classes'
 import PostPutClassesComponent from './components/OngolePublicSchool/AddOrUpdateClasses'
@@ -146,20 +146,21 @@ function App() {
             <Route path="/updateStudents/:studentsId" element={<PostPutStudentsComponent />} />
             <Route path="/deletestudents/:studentsId" element={<DeleteStudentsComponent />} />
 
-            <Route path="/staffs" element={<StaffsComponent />} />
-            <Route path="/addStaffs" element={<PostPutStaffsComponent />} />
-            <Route path="/updateStaffs/:staffsId" element={<PostPutStaffsComponent />} />
-            <Route path="/deletestaffs/:staffsId" element={<DeleteStaffsComponent />} />
+            <Route path="/staff" element={<StaffComponent />} />
+            <Route path="/addStaff" element={<PostPutStaffComponent />} />
+            <Route path="/updateStaff/:staffsId" element={<PostPutStaffComponent />} />
+            <Route path="/deletestaffs/:staffsId" element={<DeleteStaffComponent />} />
 
-            <Route path="/nonStaffs" element={<NonStaffsComponent />} />
-            <Route path="/addNonStaffs" element={<PostPutNonStaffsComponent />} />
-            <Route path="/updateNonStaffs/:nonstaffsId" element={<PostPutNonStaffsComponent />} />
-            <Route path="/deleteNonstaffs/:nonstaffsId" element={<DeleteNonStaffsComponent />} />
+            <Route path="/nonStaff" element={<NonStaffComponent />} />
+            <Route path="/addNonStaff" element={<PostPutNonStaffComponent />} />
+            <Route path="/updateNonStaff/:nonstaffsId" element={<PostPutNonStaffComponent />} />
+            <Route path="/deleteNonstaffs/:nonstaffsId" element={<DeleteNonStaffComponent />} />
 
             <Route path="/classes" element={<ClassesComponent />} />
             <Route path="/addClasses" element={<PostPutClassesComponent />} />
             <Route path="/updateClasses/:classesId" element={<PostPutClassesComponent />} />
-            <Route path="/deleteclasses/:classesId" element={<DeleteClassesComponent />} />
+            <Route path="/deleteslasses/:classesId" element={<DeleteClassesComponent />} />
+          
 
 
           

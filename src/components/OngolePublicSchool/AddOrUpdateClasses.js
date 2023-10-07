@@ -1,43 +1,50 @@
-import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+
 import { useNavigate } from 'react-router-dom'
-import NonStaffsServices from '../../services/NonStaffsServices'
+import ClassesServices from '../../services/ClassesServices'
 import Header from '../Header/Header'
 
-const PostPutNonStaffsComponent = () => {
-  const [nonStaffs_Id, setNonStaffs_Id] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [gender, setGender] = useState('')
-  const [age, setAge] = useState('')
-  const [address, setAddress] = useState('')
-  const [phoneNo, setPhoneNo] = useState('')
-  const [emailId, setEmailId] = useState('')
+const PostPutClassesComponent = () => {
+  const [classes_Id, setClasses_Id] = useState('')
+  const [uKg, setUKg] = useState('')
+  const [lKg, setLKg] = useState('')
+  const [firstClass, setFirstClass] = useState('')
+  const [secondClass, setSecondClasS] = useState('')
+  const [thirdClass, setThirdClass] = useState('')
+  const [fourthClass, setFourthClass] = useState('')
+  const [fifthClass, setFifthClass] = useState('')
+  const [sixthClass, setSixthClass] = useState('')
+  const [seventhClass, setSeventhClass] = useState('')
+  const [eightClass, setEightClass] = useState('')
+  const [ninthClass, setNinthClass] = useState('')
+  const [tenthClass, setTenthClass] = useState('')
+  
   
   const history1 = useNavigate()
-  var { nonStaffsId } = useParams()
-  var nonStaffs = { nonStaffsId, firstName, lastName, gender, age, address, phoneNo, emailId  }
+  var { classesId } = useParams()
+  var classes = { classes_Id, uKg, lKg, firstClass, secondClass, thirdClass, fourthClass, fifthClass, sixthClass, seventhClass, eightClass, ninthClass, tenthClass  }
 
-  const addOrEditNonStaffs = (e) => {
+  const addOrEditClasses = (e) => {
     e.preventDefault()
-    if (nonStaffsId) {
-    console.log("Editing nonStaffs...")
-    console.log(nonStaffsId)
-    console.log(nonStaffs)
-      NonStaffsServices.updateNonStaffs(nonStaffsId, nonStaffs).then(
+    if (classesId) {
+    console.log("Editing classes...")
+    console.log(classesId)
+    console.log(classes)
+      ClassesServices.updateClasses(classesId, classes).then(
         (response) => {
-          history1('/nonStaffs')
+          history1('/classes')
         }
       ).catch(error => {
         console.log(error)
       })
     } else {
-      nonStaffsId = nonStaffs_Id
-      nonStaffs = { nonStaffsId, firstName, lastName,gender, age, address, phoneNo, emailId  }
-      console.log(nonStaffs)
-      NonStaffsServices.addNonStaffs(nonStaffs).then(
+      classesId = classes_Id
+      classes = { classes_Id, uKg, lKg, firstClass, secondClass, thirdClass, fourthClass, fifthClass, sixthClass, seventhClass, eightClass, ninthClass, tenthClass }
+      console.log(classes)
+      ClassesServices.addClasses(classes).then(
         (response) => {
-          history1('/nonStaffs')
+          history1('/classes')
         }
       ).catch(error => {
         console.log(error)
@@ -46,16 +53,22 @@ const PostPutNonStaffsComponent = () => {
   }
 
   useEffect(() => {
-    if (nonStaffsId) {
-      NonStaffsServices.getNonStaffsByNonStaffsId(nonStaffsId).then((response) => {
-        setNonStaffs_Id(response.data.nonStaffsId)
-        setFirstName(response.data.firstName)
-        setLastName(response.data.lastName)
-        setGender(response.data.gender)
-        setAge(response.data.age)
-        setAddress(response.data.address)
-        setPhoneNo(response.data.phoneNo)
-        setEmailId(response.data.emailId)
+    if (classesId) {
+      ClassesServices.getClassesByClassesId(classesId).then((response) => {
+        setClasses_Id(response.data.classes_Id)
+        setUKg(response.data.uKg)
+        setLKg(response.data.lKg)
+        setFirstClass(response.data.firstClass)
+        setSecondClasS(response.data.secondClass)
+        setThirdClass(response.data.thirdClass)
+        setFourthClass(response.data.fourthClass)
+        setFifthClass(response.data.fifthClass)
+        setSixthClass(response.data.sixthClass)
+        setSeventhClass(response.data.seventhClass)
+        setEightClass(response.data.eightClass)
+        setNinthClass(response.data.ninthClass)
+        setTenthClass(response.data.tenthClass)
+
 
       }).catch(error => {
         console.log(error)
@@ -63,10 +76,10 @@ const PostPutNonStaffsComponent = () => {
     }, [])
 
   const title = () => {
-    if (nonStaffsId) {
-      return "Update NonStaffs"
+    if (classesId) {
+      return "Update Classes"
     } else {
-      return "Add NonStaffs"
+      return "Add Classes"
     }
   }
 
@@ -82,59 +95,89 @@ const PostPutNonStaffsComponent = () => {
           <form>
             <div class="row mt-3 mb-3">
               <div class="col-3">
-                <label for="text">*NonStaffs Id:</label>
-                <input type='text' class='form-control' placeholder='Enter NonStaffs Id' name='nonStaffsId'
-                  value={nonStaffsId} onChange={(e) => setNonStaffs_Id(e.target.value)}>
+                <label for="text">*Classes Id:</label>
+                <input type='text' class='form-control' placeholder='Enter Classes Id' name='classesId'
+                  value={classesId} onChange={(e) => setClasses_Id(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
-                <label for="text">*First Name:</label>
-                <input type='text' class='form-control' placeholder='First Name' name='firstName'
-                  value={firstName} onChange={(e) => setFirstName(e.target.value)}>
+                <label for="text">*U Kg:</label>
+                <input type='text' class='form-control' placeholder='U Kg' name='uKg'
+                  value={uKg} onChange={(e) => setUKg(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
-                <label for="text">*Last Name:</label>
-                <input type='text' class='form-control' placeholder='Last Name' name='lastName'
-                  value={lastName} onChange={(e) => setLastName(e.target.value)}>
+                <label for="text">*L Kg:</label>
+                <input type='text' class='form-control' placeholder='L Kg' name='lKg'
+                  value={lKg} onChange={(e) => setLKg(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
-                <label for="text">*Gender:</label>
-                <input type='text' class='form-control' placeholder='Gender' name='gender'
-                  value={gender} onChange={(e) => setGender(e.target.value)}>
+                <label for="text">*First Class:</label>
+                <input type='text' class='form-control' placeholder='First Class' name='firstClass'
+                  value={firstClass} onChange={(e) => setFirstClass(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
-                <label for="text">*Age:</label>
-                <input type='text' class='form-control' placeholder='Age' name='age'
-                  value={age} onChange={(e) => setAge(e.target.value)}>
-                    </input>
-                </div>
-                <div class="col-3">
-                <label for="text">*Address:</label>
-                <input type='text' class='form-control' placeholder='Address' name='address'
-                  value={address} onChange={(e) => setAddress(e.target.value)}>
+                <label for="text">*Second Class:</label>
+                <input type='text' class='form-control' placeholder='Second Class' name='secondClass'
+                  value={secondClass} onChange={(e) => setSecondClasS(e.target.value)}>
                 </input>
                 </div>
                 <div class="col-3">
-                <label for="text">*Phone No:</label>
-                <input type='text' class='form-control' placeholder='Phone No' name='phoneNo'
-                  value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)}>
-                </input>             
-                  </div>
+                <label for="text">*Third Class:</label>
+                <input type='text' class='form-control' placeholder='Third Class' name='thirdClass'
+                  value={thirdClass} onChange={(e) => setThirdClass(e.target.value)}>
+                </input>
+                </div>
                 <div class="col-3">
-                <label for="text">*Email Id:</label>
-                <input type='text' class='form-control' placeholder='Email Id' name='emailId'
-                  value={emailId} onChange={(e) => setEmailId(e.target.value)}>
+                <label for="text">*Fourth Class:</label>
+                <input type='text' class='form-control' placeholder='Fourth Class' name='fourthClass'
+                  value={fourthClass} onChange={(e) => setFourthClass(e.target.value)}>
+                </input>
+                </div>
+                <div class="col-3">
+                <label for="text">*Fifth Class:</label>
+                <input type='text' class='form-control' placeholder='Fifth Class' name='fifthClass'
+                  value={fifthClass} onChange={(e) => setFifthClass(e.target.value)}>
+                </input>
+                </div>
+                <div class="col-3">
+                <label for="text">*Sixth Class:</label>
+                <input type='text' class='form-control' placeholder='Sixth Class' name='sixthClass'
+                  value={sixthClass} onChange={(e) => setSixthClass(e.target.value)}>
+                </input>
+                </div>
+                <div class="col-3">
+                <label for="text">*Seventh Class:</label>
+                <input type='text' class='form-control' placeholder='Seventh Class' name='seventhClass'
+                  value={seventhClass} onChange={(e) => setSeventhClass(e.target.value)}>
+                </input>
+                </div>
+                <div class="col-3">
+                <label for="text">*Eight Class:</label>
+                <input type='text' class='form-control' placeholder='Eight Class' name='eightClass'
+                  value={eightClass} onChange={(e) => setEightClass(e.target.value)}>
+                </input>
+                </div>
+                <div class="col-3">
+                <label for="text">*Ninth Class:</label>
+                <input type='text' class='form-control' placeholder='Ninth Class' name='ninthClass'
+                  value={ninthClass} onChange={(e) => setNinthClass(e.target.value)}>
+                </input>
+                </div>
+                <div class="col-3">
+                <label for="text">*Tenth Class:</label>
+                <input type='text' class='form-control' placeholder='Tenth Class' name='tenthClass'
+                  value={tenthClass} onChange={(e) => setTenthClass(e.target.value)}>
                 </input>
               </div>
               <div class='col-sm-8'>
                 <br></br>
                 <button className='btn btn-success ms-1' onClick={(e) =>
-                  addOrEditNonStaffs(e)}>{title()}</button>
-                <Link to="/nonStaffs" className='btn btn-danger ms-1'>Cancel</Link>
-                <Link to="/nonStaffs" className='btn btn-info ms-1'>Clear</Link>
+                  addOrEditClasses(e)}>{title()}</button>
+                <Link to="/classes" className='btn btn-danger ms-1'>Cancel</Link>
+                <Link to="/classes" className='btn btn-info ms-1'>Clear</Link>
               </div>
             </div>
           </form>
@@ -144,4 +187,4 @@ const PostPutNonStaffsComponent = () => {
   )
 }
 
-export default PostPutNonStaffsComponent
+export default PostPutClassesComponent

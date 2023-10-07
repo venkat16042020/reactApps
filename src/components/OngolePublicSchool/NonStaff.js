@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import NonStaffsServices from '../../services/NonStaffsServices'
+import NonStaffServices from '../../services/NonStaffServices'
 import Header from '../Header/Header'
 import '../../css/abc.css'
 
-const NonStaffsComponent = () => {
-  const [nonstaffs, setNonStaffs] = useState([])
+const NonStaffComponent = () => {
+  const [nonstaffs, setNonStaff] = useState([])
   const [currentPage, setCurrentPage] = useState([])
   const recordsPerPage = 5
   const lastIndex = currentPage * recordsPerPage
@@ -16,8 +16,8 @@ const NonStaffsComponent = () => {
 
   useEffect(() => {
     setCurrentPage(1)
-    NonStaffsServices.getAllNonStaffs().then((response) => {
-      setNonStaffs(response.data)
+    NonStaffServices.getAllNonStaff().then((response) => {
+      setNonStaff(response.data)
     }).catch(error => {
       console.log(error)
     })
@@ -27,17 +27,17 @@ const NonStaffsComponent = () => {
     <div className='container'>
       <Header></Header>
       <br></br>
-      <h2 className='text-center'>NonStaffs</h2>
+      <h2 className='text-center'>NonStaff</h2>
 
       <div className="float-right">
-        <Link to="/addNonStaffs" className='btn btn-primary mb-2' >Add NonStaffs</Link>
+        <Link to="/addNonStaff" className='btn btn-primary mb-2' >Add NonStaff</Link>
       </div>
       <div>
       </div>
       <table id='tblkv1'>
         <thead>
           <tr>
-            <th>NonStaffs Id</th>
+            <th>NonStaff Id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -64,8 +64,8 @@ const NonStaffsComponent = () => {
                  
                   
                   <td>
-                    <Link className='btn btn-success ms-1' to={`/updateNonStaffs/${nonstaffsMapObj.nonstaffsId}`}>Update</Link>
-                    <Link className='btn btn-danger ms-1' to={`/deleteNonStaffs/${nonstaffsMapObj.nonstaffsId}`}>Delete</Link>
+                    <Link className='btn btn-success ms-1' to={`/updateNonStaff/${nonstaffsMapObj.nonstaffsId}`}>Update</Link>
+                    <Link className='btn btn-danger ms-1' to={`/deleteNonStaff/${nonstaffsMapObj.nonstaffsId}`}>Delete</Link>
                   </td>
                 </tr>
             )
@@ -111,4 +111,4 @@ const NonStaffsComponent = () => {
 
 }
 
-export default NonStaffsComponent
+export default NonStaffComponent

@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import StaffsServices from '../../services/StaffsServices'
+import StaffServices from '../../services/StaffServices'
 import Header from '../Header/Header'
 import '../../css/abc.css'
 
-const StaffsComponent = () => {
-  const [staffs, setStaffs] = useState([])
+const StaffComponent = () => {
+  const [staff, setStaff] = useState([])
   const [currentPage, setCurrentPage] = useState([])
   const recordsPerPage = 5
   const lastIndex = currentPage * recordsPerPage
   const firstIndex = lastIndex - recordsPerPage
-  const records = staffs.slice(firstIndex, lastIndex)
-  const nPage = Math.ceil(staffs.length / recordsPerPage)
+  const records = staff.slice(firstIndex, lastIndex)
+  const nPage = Math.ceil(staff.length / recordsPerPage)
   const numbers = [...Array(nPage + 1).keys()].slice(1)
 
   useEffect(() => {
     setCurrentPage(1)
-    StaffsServices.getAllStaffs().then((response) => {
-      setStaffs(response.data)
+    StaffServices.getAllStaff().then((response) => {
+      setStaff(response.data)
     }).catch(error => {
       console.log(error)
     })
@@ -27,17 +27,17 @@ const StaffsComponent = () => {
     <div className='container'>
       <Header></Header>
       <br></br>
-      <h2 className='text-center'>Staffs</h2>
+      <h2 className='text-center'>Staff</h2>
 
       <div className="float-right">
-        <Link to="/addStaffs" className='btn btn-primary mb-2' >Add Staffs</Link>
+        <Link to="/addStaff" className='btn btn-primary mb-2' >Add Staff</Link>
       </div>
       <div>
       </div>
       <table id='tblkv1'>
         <thead>
           <tr>
-            <th>Staffs Id</th>
+            <th>Staff Id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -51,21 +51,21 @@ const StaffsComponent = () => {
         <tbody>
           {
             records.map(
-              staffsMapObj =>
-                <tr key={staffsMapObj.staffsId}>
-                  <td>{staffsMapObj.staffsId}</td>
-                  <td>{staffsMapObj.firstName}</td>
-                  <td>{staffsMapObj.lastName}</td>
-                  <td>{staffsMapObj.gender}</td>
-                  <td>{staffsMapObj.age}</td>
-                  <td>{staffsMapObj.address}</td>
-                  <td>{staffsMapObj.phoneNo}</td>
-                  <td>{staffsMapObj.emailId}</td>
+              staffMapObj =>
+                <tr key={staffMapObj.staffId}>
+                  <td>{staffMapObj.staffId}</td>
+                  <td>{staffMapObj.firstName}</td>
+                  <td>{staffMapObj.lastName}</td>
+                  <td>{staffMapObj.gender}</td>
+                  <td>{staffMapObj.age}</td>
+                  <td>{staffMapObj.address}</td>
+                  <td>{staffMapObj.phoneNo}</td>
+                  <td>{staffMapObj.emailId}</td>
                  
                   
                   <td>
-                    <Link className='btn btn-success ms-1' to={`/updateStaffs/${staffsMapObj.staffsId}`}>Update</Link>
-                    <Link className='btn btn-danger ms-1' to={`/deleteStaffs/${staffsMapObj.staffsId}`}>Delete</Link>
+                    <Link className='btn btn-success ms-1' to={`/updateStaff/${staffMapObj.staffId}`}>Update</Link>
+                    <Link className='btn btn-danger ms-1' to={`/deleteStaff/${staffMapObj.staffId}`}>Delete</Link>
                   </td>
                 </tr>
             )
@@ -111,4 +111,4 @@ const StaffsComponent = () => {
 
 }
 
-export default StaffsComponent
+export default StaffComponent
