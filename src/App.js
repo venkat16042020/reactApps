@@ -159,12 +159,7 @@ function App() {
             <Route path="/classes" element={<ClassesComponent />} />
             <Route path="/addClasses" element={<PostPutClassesComponent />} />
             <Route path="/updateClasses/:classesId" element={<PostPutClassesComponent />} />
-            <Route path="/deleteslasses/:classesId" element={<DeleteClassesComponent />} />
-          
-
-
-          
-          
+            <Route path="/deleteslasses/:classesId" element={<DeleteClassesComponent />} />           
           </Routes>
         </BrowserRouter>
       </div>

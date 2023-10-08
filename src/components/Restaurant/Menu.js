@@ -37,6 +37,7 @@ const MenuComponent = () => {
       <table id='tblkv1'>
         <thead>
           <tr>
+            <th>Sl.No</th>
             <th>Menu Id</th>
             <th>Item Id</th>
             <th>Item Name</th>
@@ -53,8 +54,9 @@ const MenuComponent = () => {
         <tbody>
           {
             records.map(
-              menuItemMapObj =>
+              (menuItemMapObj,index) =>              
                 <tr key={menuItemMapObj.itemId}>
+                  <td>{(firstIndex+1) + index}</td>
                   <td>{menuItemMapObj.menuId}</td>
                   <td>{menuItemMapObj.itemId}</td>
                   <td>{menuItemMapObj.itemName}</td>

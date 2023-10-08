@@ -10,7 +10,7 @@ const PostPutOrderComponent = () => {
   const [itemId, setItemId] = useState('')
   const [itemName, setItemName] = useState('')
   const [numberOfItems, setNumberOfItems] = useState(1.00)
-  const [isTakeAway, setIsTakeAway] = useState('')
+  const [isTakeAway, setIsTakeAway] = useState('No')
   const [discount, setDiscount] = useState(0.00)
   const [couponId, setCouponId] = useState('')
   const [cost, setCost] = useState(0.00)
@@ -58,11 +58,15 @@ const PostPutOrderComponent = () => {
   var { orderId } = useParams()
   var order = { orderId, itemId, itemName, numberOfItems, isTakeAway, discount, couponId, cost, centralGst, stateGst, totalGst, totalCost }
 
+  const onOptionChange = (e) => {
+    setIsTakeAway(e.target.value === "Yes" ? "true" : "false")
+    console.log(e.target.value === "Yes" ? "true" : "false")
+  }
+
   const addOrEditOrder = (e) => {
     e.preventDefault()
-    console.log("dkdkk")
     console.log(orderId)
-    if (orderId && (orderId!=="undefined")) {
+    if (orderId && (orderId !== "undefined")) {
       console.log("Editing order...")
       console.log(orderId)
       console.log(order)
@@ -97,22 +101,23 @@ const PostPutOrderComponent = () => {
 
   useEffect(() => {
     if (orderId) {
-    OrderServices.getOrderById(orderId).then((response) => {
-      setOrder_Id(response.data.orderId)
-      setItemId(response.data.itemId)
-      setItemName(response.data.itemName)
-      setNumberOfItems(response.data.numberOfItems)
-      setIsTakeAway(response.data.isTakeAway)
-      setDiscount(response.data.discount)
-      setCouponId(response.data.couponId)
-      setCost(response.data.cost)
-      setCentralGst(response.data.centralGst)
-      setStateGst(response.data.stateGst)
-      setTotalGst(response.data.totalGst)
-      setTotalCost(response.data.totalCost)
-    }).catch(error => {
-      console.log(error)
-    })}
+      OrderServices.getOrderById(orderId).then((response) => {
+        setOrder_Id(response.data.orderId)
+        setItemId(response.data.itemId)
+        setItemName(response.data.itemName)
+        setNumberOfItems(response.data.numberOfItems)
+        setIsTakeAway(response.data.isTakeAway)
+        setDiscount(response.data.discount)
+        setCouponId(response.data.couponId)
+        setCost(response.data.cost)
+        setCentralGst(response.data.centralGst)
+        setStateGst(response.data.stateGst)
+        setTotalGst(response.data.totalGst)
+        setTotalCost(response.data.totalCost)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
   }, [])
 
   const title = () => {
@@ -135,13 +140,13 @@ const PostPutOrderComponent = () => {
           <form>
             <div class="row mt-3 mb-3">
               <div class="col-3">
-                <label for="text">Order Id:</label>
+                <label htmlFor="text">Order Id:</label>
                 <input type='text' class='form-control' placeholder='Enter Order Id' name='orderid'
                   value={orderId} onChange={(e) => setOrder_Id(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">Item Id:</label>
+                <label htmlFor="text">Item Id:</label>
                 <select name="allItems" class='form-control' value={item} onChange={handleItem}>
                   {allItems.map((item, i) => {
                     return <option key={i} value={item} onSelect={
@@ -151,82 +156,70 @@ const PostPutOrderComponent = () => {
                 </select>
               </div>
               <div class="col-3">
-                <label for="text">Item Name:</label>
+                <label htmlFor="text">Item Name:</label>
                 <input type='text' class='form-control' placeholder='Enter Item Name' name='itemName'
                   value={itemName} disabled onChange={(e) => setItemName(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">Number Of Items:</label>
+                <label htmlFor="text">Number Of Items:</label>
                 <input type='text' class='form-control' placeholder='Number Of Items' name='numberOfItems'
                   value={numberOfItems} onChange={(e) => handleNumberOfItems(e.target.value)}>
                 </input>
               </div>
               {/* <div class="col-3">
-                <label for="text">Is Take Away:</label>
+                <label htmlFor="text">Is Take Away:</label>
                 <input type='text' class='form-control' placeholder='Is Take Away' name='isTakeAway'
                   value={isTakeAway} onChange={(e) => setIsTakeAway(e.target.value==="yes" ? "true" : "false")}>
                 </input>
               </div> */}
               <div class="col-3">
-              <label for="text">Is Take Away:</label>
-
+                <label htmlFor="text">Is Take Away:</label>
                 <div className="radio">
-                    <input
-                      type="radio"
-                      name="isTakeAway"
-                      value="true"
-                      onChange={(e) => setIsTakeAway(e.target.value==="yes" ? "true" : "false")} />
-                    Yes
-                </div>
-                <div className="radio">
-     
-                    <input
-                      type="radio"
-                      name="isTakeAway"
-                      value="false"
-                      onChange={(e) => setIsTakeAway(e.target.value==="no" ? "false" : "true")} />
-                    No
+                  <input type="radio" name="isTakeAway" value="Yes" id='Yes' onChange={onOptionChange} />
+                  Yes
+                  <input type="radio" name="isTakeAway" value="No" id="No" onChange={onOptionChange} />
+                  No
                 </div>
               </div>
               <div class="col-3">
-                <label for="text">CouponId:</label>
+                <label htmlFor="text">CouponId:</label>
                 <input type='text' class='form-control' placeholder='Coupon Id' name='couponId'
                   value={couponId} onChange={(e) => setCouponId(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">Discount:</label>
+                <label htmlFor="text">Discount:</label>
                 <input type='text' class='form-control' placeholder='Discount' name='discount'
                   value={discount} onChange={(e) => handleDiscount(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">Cost:</label>
+                <label htmlFor="text">Cost:</label>
                 <input type='text' class='form-control' placeholder='Cost' name='cost'
                   value={cost} disabled onChange={(e) => handleCost(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">Central Gst:</label>
+                <label htmlFor="text">Central Gst:</label>
                 <input type='text' class='form-control' placeholder='Central Gst' name='centralGst'
                   value={centralGst} disabled onChange={(e) => setCentralGst(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">State Gst:</label>
+                <label htmlFor="text">State Gst:</label>
                 <input type='text' class='form-control' placeholder='State Gst' name='stateGst'
                   value={stateGst} disabled onChange={(e) => setStateGst(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">Total Gst:</label>
+                <label htmlFor="text">Total Gst:</label>
                 <input type='text' class='form-control' placeholder='Total Gst' name='totalGst'
                   value={totalGst} disabled onChange={(e) => setTotalGst(e.target.value)}>
                 </input>
               </div>
               <div class="col-3">
-                <label for="text">Total Cost:</label>
+                <label htmlFor="text">Total Cost:</label>
                 <input type='text' class='form-control' placeholder='Total Cost' name='totalCost'
                   value={totalCost} disabled onChange={(e) => setTotalCost(e.target.value)}>
                 </input>
