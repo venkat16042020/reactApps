@@ -70,7 +70,7 @@ const PostPutStockComponent = () => {
   }, [])
 
   const title = () => {
-    if (itemId) {
+    if (stockId) {
       return "Update Stock"
     } else {
       return "Add Stock"

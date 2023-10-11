@@ -3,115 +3,45 @@ import { Link } from 'react-router-dom'
 import MenuServices from '../../services/MenuServices'
 import Header from '../Header/Header'
 import '../../css/abc.css'
+import BootstrapTable from 'react-bootstrap-table-next';
 
 const MenuComponent = () => {
-  const [menu, setMenu] = useState([])
-  const [currentPage, setCurrentPage] = useState([])
-  const recordsPerPage = 5
-  const lastIndex = currentPage * recordsPerPage
-  const firstIndex = lastIndex - recordsPerPage
-  const records = menu.slice(firstIndex, lastIndex)
-  const nPage = Math.ceil(menu.length / recordsPerPage)
-  const numbers = [...Array(nPage + 1).keys()].slice(1)
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    setCurrentPage(1)
+   getData()
+  }, [])
+  const getData = () =>{
     MenuServices.getAllMenu().then((response) => {
-      setMenu(response.data)
+      setData(response.data)
+      console.log(response.data)
     }).catch(error => {
       console.log(error)
     })
-  }, [])
-
+  }
+  const columns = [{dataFiled: 'menuId', text: "Menu Id", sort: true},
+                    {dataFiled: "itemId", text: "Item Id"},
+                    {dataFiled: "itemName", text: "Item Name"},
+                    {dataFiled: "date", text: "Date"},
+                    {dataFiled: "numberOfItemsAvailable", text: "Number Of Items Available"},
+                    {dataFiled: "stateGst", text: "state Gst"},
+                    {dataFiled: "centralGst", text: "central Gst"},
+                    {dataFiled: "cost", text: "cost"},
+                    {dataFiled: "totalGst", text: "total Gst"},
+                    {dataFiled: "totalCost", text: "total Cost"}
+                  ];
   return (
-    <div className='container'>
-      <Header></Header>
-      <br></br>
-      <h2 className='text-center'>Menu</h2>
-
-      <div className="float-right">
-        <Link to="/addMenuItem" className='btn btn-primary mb-2' >Add MenuItem</Link>
-      </div>
-      <div>
-      </div>
-      <table id='tblkv1'>
-        <thead>
-          <tr>
-            <th>Sl.No</th>
-            <th>Menu Id</th>
-            <th>Item Id</th>
-            <th>Item Name</th>
-            <th>Number of Items Available</th>
-            <th>Date</th>
-            <th>Cost</th>
-            <th>Central Gst</th>
-            <th>State Gst</th>
-            <th>Total Gst</th>
-            <th>Total Cost</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            records.map(
-              (menuItemMapObj,index) =>              
-                <tr key={menuItemMapObj.itemId}>
-                  <td>{(firstIndex+1) + index}</td>
-                  <td>{menuItemMapObj.menuId}</td>
-                  <td>{menuItemMapObj.itemId}</td>
-                  <td>{menuItemMapObj.itemName}</td>
-                  <td>{menuItemMapObj.numberOfItemsAvailable}</td>
-                  <td>{menuItemMapObj.date}</td>
-                  <td>{menuItemMapObj.cost}</td>
-                  <td>{menuItemMapObj.centralGst}</td>
-                  <td>{menuItemMapObj.stateGst}</td>
-                  <td>{menuItemMapObj.totalGst}</td>
-                  <td>{menuItemMapObj.totalCost}</td>
-                  <td>
-                    <Link className='btn btn-success ms-1' to={`/updateMenu/${menuItemMapObj.itemId}`}>Update</Link>
-                    <Link className='btn btn-danger ms-1' to={`/deleteMenu/${menuItemMapObj.itemId}`}>Delete</Link>
-                  </td>
-                </tr>
-            )
-          }
-        </tbody>
-      </table>
-      <nav className='pagination'>
-        <li className='page-item'>
-          <a href='#' className='page-link'
-            onClick={perPage} >Prev</a>
-        </li>
-        {
-          numbers.map((n, i) => (
-            <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>
-              <a href='#' className='page-link'
-                onClick={() => changeCPage(n)
-                }>{n}</a>
-            </li>
-          ))
-        }
-        <li className='page-item'>
-          <a href='#' className='page-link'
-            onClick={nextPage}>Next</a>
-        </li>
-      </nav>
-    </div>
+    <div>
+  <BootstrapTable  
+  bootstrap4
+        keyField={'menuId'}
+        data={data}
+        columns={columns} 
+        responsive = {true}
+        condensed
+        hover/>
+ </div>
   )
-  function perPage() {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1)
-    }
-  }
-
-  function changeCPage(id) {
-    setCurrentPage(id)
-  }
-
-  function nextPage() {
-    if (currentPage !== nPage) {
-      setCurrentPage(currentPage + 1)
-    }
-  }
 
 }
 
