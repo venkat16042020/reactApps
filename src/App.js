@@ -69,6 +69,7 @@ import DeleteNonStaffComponent from './components/OngolePublicSchool/DeleteNonSt
 import ClassesComponent from './components/OngolePublicSchool/Classes'
 import PostPutClassesComponent from './components/OngolePublicSchool/AddOrUpdateClasses'
 import DeleteClassesComponent from './components/OngolePublicSchool/DeleteClasses'
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css'
 
 
 function App() {
