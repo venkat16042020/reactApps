@@ -13,6 +13,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, {Search, CSVExport} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import {paginationFn} from'../KlnReactLibs/KLN_Lib'
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import { type } from '@testing-library/user-event/dist/type'
 const { ExportCSVButton } = CSVExport;
 
 const MenuComponent = () => {
@@ -25,27 +26,28 @@ const MenuComponent = () => {
     };
     return (
       <div>
-        <button className="btn btn-success" onClick={handleClick}>Export to CSV</button>
+        <button className="btn btn-success" onClick={handleClick}>Export Data</button>
       </div>
     );
   };
   useEffect(() => {
-    getData()
-    console.log("999")
-    console.log(data)
+    getAllData()
+
   }, [])
-  const getData = () => {
+  const getAllData = () => {
     MenuServices.getAllMenu().then((response) => {
-      setData(response.data)
-      console.log(response.data)
+      for(var i = 0; i <response.data.length; i++) {
+        response.data[i].slNo = i+1
+    }
+    setData(response.data)      
+
+      console.log(data)
     }).catch(error => {
       console.log(error)
     })
   }
-  const index = 0
   const columns = [
-    { dataField: 'sl.no', text: 'Sl no.', 
-    formatter: (cell, row, rowIndex, formatExtraData) => { return rowIndex + 1; }, sort: true, },
+    { dataField: 'slNo', text: 'Sl No', sort: true, },
     { dataField: 'menuId', text: "Menu Id", sort: true },
   { dataField: "itemId", text: "Item Id", sort: true },
   { dataField: "itemName", text: "Item Name", sort: true },
@@ -59,12 +61,12 @@ const MenuComponent = () => {
   ];
   const defaultSorted = [{
     dataField: 'menuId',
-    order: 'desc'
+    order: 'asc'
   }];
 
   const pagination = paginationFactory({
     page: 1,
-    sizePerPage: 3,
+    sizePerPage: 5,
     lastPageText: '>>',
     firstPageText: '<<',
     nextPageText: '>',
