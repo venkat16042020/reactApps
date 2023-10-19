@@ -71,6 +71,26 @@ import PostPutClassesComponent from './components/OngolePublicSchool/AddOrUpdate
 import DeleteClassesComponent from './components/OngolePublicSchool/DeleteClasses'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css'
 
+import SalariesComponent from './components/OngolePublicSchool/Salaries'
+import PostPutSalariesComponent from './components/OngolePublicSchool/AddOrUpdateSalaries'
+import DeleteSalariesComponent from './components/OngolePublicSchool/DeleteSalaries'
+
+import MediaComponent from './components/OngolePublicSchool/Media'
+import PostPutMediaComponent from './components/OngolePublicSchool/AddOrUpdateMedia'
+import DeleteMediaComponent from './components/OngolePublicSchool/DeleteMedia'
+
+import CulturalComponent from './components/OngolePublicSchool/Cultural'
+import PostPutCulturalComponent from './components/OngolePublicSchool/AddOrUpdateCultural'
+import DeleteCulturalComponent from './components/OngolePublicSchool/DeleteCultural'
+
+import DepartmentComponent from './components/OngolePublicSchool/Department'
+import PostPutDepartmentComponent from './components/OngolePublicSchool/AddOrUpdateDepartment'
+import DeleteDepartmentComponent from './components/OngolePublicSchool/DeleteDepartment'
+
+import FeesComponent from './components/OngolePublicSchool/Fees'
+import PostPutFeesComponent from './components/OngolePublicSchool/AddOrUpdateFees'
+import DeleteFeesComponent from './components/OngolePublicSchool/DeleteFees'
+
 
 function App() {
   return (
@@ -160,7 +180,34 @@ function App() {
             <Route path="/classes" element={<ClassesComponent />} />
             <Route path="/addClasses" element={<PostPutClassesComponent />} />
             <Route path="/updateClasses/:classesId" element={<PostPutClassesComponent />} />
-            <Route path="/deleteslasses/:classesId" element={<DeleteClassesComponent />} />           
+            <Route path="/deleteslasses/:classesId" element={<DeleteClassesComponent />} />  
+
+            <Route path="/salaries" element={<SalariesComponent />} />
+            <Route path="/addSalaries" element={<PostPutSalariesComponent />} />
+            <Route path="/updateSalaries/:salariesId" element={<PostPutSalariesComponent />} />
+            <Route path="/deleteSalaries/:salariesId" element={<DeleteSalariesComponent />} />
+         
+            <Route path="/media" element={<MediaComponent />} />
+            <Route path="/addMedia" element={<PostPutMediaComponent />} />
+            <Route path="/updateMedia/:mediaId" element={<PostPutMediaComponent />} />
+            <Route path="/deleteMedia/:mediaId" element={<DeleteMediaComponent />} />
+         
+            <Route path="/cultural" element={<CulturalComponent />} />
+            <Route path="/addCultural" element={<PostPutCulturalComponent />} />
+            <Route path="/updateCultural/:culturalId" element={<PostPutCulturalComponent />} />
+            <Route path="/deleteCultural/:culturalId" element={<DeleteCulturalComponent />} />
+         
+            <Route path="/department" element={<DepartmentComponent />} />
+            <Route path="/addDepartment" element={<PostPutDepartmentComponent />} />
+            <Route path="/updateDepartment/:departmentId" element={<PostPutDepartmentComponent />} />
+            <Route path="/deleteDepartment/:departmentId" element={<DeleteDepartmentComponent />} />
+
+            <Route path="/fees" element={<FeesComponent />} />
+            <Route path="/addFees" element={<PostPutFeesComponent />} />
+            <Route path="/updateFees/:feesId" element={<PostPutFeesComponent />} />
+            <Route path="/deleteFees/:feesId" element={<DeleteFeesComponent />} />
+         
+         
           </Routes>
         </BrowserRouter>
       </div>

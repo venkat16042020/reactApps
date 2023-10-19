@@ -34,6 +34,11 @@ const Header = () => {
       <li class="nav-item active"><Link class="nav-link text-dark" to="/staff">Staff</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/nonstaff">NonStaff</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/classes">Classes</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/salaries">Salaries</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/media">Media</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/cultural">Cultural</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/department">Department</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/fees">Fees</Link></li>
       
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Assets">Assets</Link></li> */}
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Money">Money</Link></li> */}
