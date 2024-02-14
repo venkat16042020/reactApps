@@ -1,3 +1,5 @@
+npm start
+
 Extend features:
 a. Handle radio buttons
 
