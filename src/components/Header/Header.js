@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const Header = () => {
   return (
     <div>
-      <h1>KLN HOTELS</h1>
+      <h1>Kamani9 Solutions</h1>
       <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>

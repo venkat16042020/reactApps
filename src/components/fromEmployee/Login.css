@@ -1,0 +1,35 @@
+/* Style for form labels */
+label {
+  display: left; /* Display labels as inline-block elements */
+  width: 89px; /* Set a fixed width for labels */
+  text-align: left; /* Align label text to the right */
+  font-weight: latin; /* Make the label text bold */
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* Style for form inputs */
+input {
+  width: 20%; /* Make the inputs fill the entire width */
+  padding: 1px;/* Add some padding inside each input */
+  margin-bottom: 4px; /* Add some space below each input */
+  border: px solid #ccc; /* Add a border around each input */
+  border-radius: 4px; /* Add rounded corners to each input */
+  box-sizing: border-box; /* Include padding and border in the input's total width */
+}
+
+/* Style for the submit button */
+button {
+  padding: 1px 2px; /* Add some padding inside the button */
+  background-color: #067f; /* Set the background color of the button */
+  color: #fff; /* Set the text color of the button */
+  border: none; /* Remove the border around the button */
+  border-radius: 4px; /* Add rounded corners to the button */
+  cursor: pointer;
+  /* Change the cursor to a pointer when hovering over the button */
+}
+.login-button{
+  color: blue;
+  text-decoration: white;
+
+}
