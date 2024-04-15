@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 const Header = () => {
   return (
     <div>
-      <h1>Kamani9 Solutions</h1>
+      <br/>
+      <h1>KLN FOODS</h1>
+      <br/>
       <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
@@ -14,21 +16,21 @@ const Header = () => {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active"><Link class="nav-link text-dark" to="/Home">Home</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Accounts">Accounts</Link></li>
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Accounts">Accounts</Link></li> */}
       <li class="nav-item active"><Link class="nav-link text-dark" to="/Bills">Bills</Link></li>
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Electornics">Electornics</Link></li> */}
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/FamilyMembers">FamilyMembers</Link></li> */}
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Friends">Friends</Link></li> */}
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/HouseHoldThings">HouseHoldThings</Link></li> */}
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/Persons">Persons</Link></li>
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Persons">Persons</Link></li> */}
       <li class="nav-item active"><Link class="nav-link text-dark" to="/menus">Menu</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/order">Order</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/stock">Stock</Link></li>
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/stock">Stock</Link></li> */}
       <li class="nav-item active"><Link class="nav-link text-dark" to="/infrastructure">Infrastucture</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/rent">Rent</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/feedback">Feedback</Link></li>
       
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/admin">Admin</Link></li>
+      {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/admin">Admin</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/attendance">Attendance</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/students">Students</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/staff">Staff</Link></li>
@@ -38,7 +40,7 @@ const Header = () => {
       <li class="nav-item active"><Link class="nav-link text-dark" to="/media">Media</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/cultural">Cultural</Link></li>
       <li class="nav-item active"><Link class="nav-link text-dark" to="/department">Department</Link></li>
-      <li class="nav-item active"><Link class="nav-link text-dark" to="/fees">Fees</Link></li>
+      <li class="nav-item active"><Link class="nav-link text-dark" to="/fees">Fees</Link></li> */}
       
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Assets">Assets</Link></li> */}
       {/* <li class="nav-item active"><Link class="nav-link text-dark" to="/Money">Money</Link></li> */}

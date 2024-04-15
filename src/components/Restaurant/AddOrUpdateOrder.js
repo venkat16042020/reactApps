@@ -6,6 +6,13 @@ import Header from '../Header/Header'
 import MenuServices from '../../services/MenuServices'
 
 const PostPutOrderComponent = () => {
+
+
+  // const [ordr, setOrdr] = useState(props.data);
+  // const [displayForm, setDisplayForm] = useState(false);
+  const [newItem, setNewItem] = useState([{itemId: "", itemName: "", itemName: "",  numberOfItems: 1.00, isTakeAway: "No", discount: 0.00,  couponId: "", cost: 0.00, centralGst: 0.00,
+  stateGst: 0.00, totalGst: 0.00, totalCost: 0.00}]);
+
   const [order_Id, setOrder_Id] = useState('')
   const [itemId, setItemId] = useState('')
   const [itemName, setItemName] = useState('')
@@ -62,6 +69,21 @@ const PostPutOrderComponent = () => {
     setIsTakeAway(e.target.value === "Yes" ? "true" : "false")
     console.log(e.target.value === "Yes" ? "true" : "false")
   }
+
+
+
+
+
+  const addNewItem = () => {
+    // setOrdr([...ordr, { id: ordr.length + 1, ...newItem }]);
+    setNewItem([...itemName, {itemId: "", itemName: "", itemName: "",  numberOfItems: 1.00, isTakeAway: "No", discount: 0.00,  couponId: "", cost: 0.00, centralGst: 0.00,
+    stateGst: 0.00, totalGst: 0.00, totalCost: 0.00}]);
+    // setDisplayForm(false);
+  };
+
+
+
+
 
   const addOrEditOrder = (e) => {
     e.preventDefault()
@@ -134,12 +156,23 @@ const PostPutOrderComponent = () => {
       <br></br>
       <div className='row'></div>
       <div className='card col-md-6 offset-md-3'>
+
         <br></br>
         <h3 className='text-center'>{title()}</h3>
+        <br/>
+        
+     
         <div className='card-body'>
+        <button className='btn btn-success ms-1' onClick={(e) =>
+                  addOrEditOrder(e)}>{title()}</button>
+                <Link to="/order" className='btn btn-danger ms-1'>Cancel</Link>
+                <br/>
           <form>
-            <div class="row mt-3 mb-3">
-              <div class="col-3">
+          {
+            newItem.map((val, i) =>
+          <div>
+            <div class="row mt-3 mb-3">           
+                <div class="col-3">
                 <label htmlFor="text">Order Id:</label>
                 <input type='text' class='form-control' placeholder='Enter Order Id' name='orderid'
                   value={orderId} onChange={(e) => setOrder_Id(e.target.value)}>
@@ -151,7 +184,7 @@ const PostPutOrderComponent = () => {
                   {allItems.map((item, i) => {
                     return <option key={i} value={item} onSelect={
                       () => handleItem(item, i)}>{item}</option>
-                  })
+                    })
                   }
                 </select>
               </div>
@@ -168,11 +201,11 @@ const PostPutOrderComponent = () => {
                 </input>
               </div>
               {/* <div class="col-3">
-                <label htmlFor="text">Is Take Away:</label>
-                <input type='text' class='form-control' placeholder='Is Take Away' name='isTakeAway'
-                  value={isTakeAway} onChange={(e) => setIsTakeAway(e.target.value==="yes" ? "true" : "false")}>
-                </input>
-              </div> */}
+              <label htmlFor="text">Is Take Away:</label>
+              <input type='text' class='form-control' placeholder='Is Take Away' name='isTakeAway'
+              value={isTakeAway} onChange={(e) => setIsTakeAway(e.target.value==="yes" ? "true" : "false")}>
+              </input>
+            </div> */}
               <div class="col-3">
                 <label htmlFor="text">Is Take Away:</label>
                 <div className="radio">
@@ -223,14 +256,17 @@ const PostPutOrderComponent = () => {
                 <input type='text' class='form-control' placeholder='Total Cost' name='totalCost'
                   value={totalCost} disabled onChange={(e) => setTotalCost(e.target.value)}>
                 </input>
+              </div>  
               </div>
+              </div>
+            )
+            }
               <div class='col-sm-8'>
                 <br></br>
-                <button className='btn btn-success ms-1' onClick={(e) =>
-                  addOrEditOrder(e)}>{title()}</button>
-                <Link to="/order" className='btn btn-danger ms-1'>Cancel</Link>
+                <button className='btn btn-success ms-1' onClick={
+                  addNewItem}>Add new Item</button>
               </div>
-            </div>
+            
           </form>
         </div>
       </div>
